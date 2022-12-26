@@ -32,6 +32,7 @@
         android:background="@drawable/bg_calender">
 
         <CalendarView
+            android:id="@+id/compactcalendar_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"></CalendarView>
     </LinearLayout>

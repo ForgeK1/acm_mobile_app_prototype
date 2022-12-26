@@ -24,6 +24,20 @@
         android:layout_marginTop="10sp"
         />
 
+<!--    <com.github.sundeepk.compactcalendarview.CompactCalendarView-->
+<!--        android:id="@+id/compactcalendar_view"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="250dp"-->
+<!--        android:paddingLeft="5dp"-->
+<!--        android:paddingRight="5dp"-->
+<!--        app:compactCalendarBackgroundColor="#ffe95451"-->
+<!--        app:compactCalendarCurrentDayBackgroundColor="#B71C1C"-->
+<!--        app:compactCalendarCurrentSelectedDayBackgroundColor="#E57373"-->
+<!--        app:compactCalendarMultiEventIndicatorColor="#fff"-->
+<!--        app:compactCalendarTargetHeight="250dp"-->
+<!--        app:compactCalendarTextColor="#fff"-->
+<!--        app:compactCalendarTextSize="12sp" />-->
+
     <LinearLayout
         android:layout_width="360sp"
         android:layout_height="wrap_content"
@@ -33,9 +47,10 @@
         android:typeface="serif">
 
         <CalendarView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_gravity="center_horizontal"></CalendarView>
+            android:id="@+id/compactcalendar_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"></CalendarView>
     </LinearLayout>
 
 </LinearLayout>
