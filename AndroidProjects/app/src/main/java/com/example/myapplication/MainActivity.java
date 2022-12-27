@@ -1,9 +1,9 @@
 package com.example.myapplication;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.app.ActionBar;
-import android.app.Notification;
+
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -17,35 +17,43 @@ import java.util.Date;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
+
     CompactCalendarView compactCalendar;
-    private SimpleDateFormat dateFormatMonth = new SimpleDateFormat("MMMM - yyyy", Locale.getDefault());
+    private SimpleDateFormat dateFormatMonth = new SimpleDateFormat("MMMM- yyyy", Locale.getDefault());
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.secondary);
+        setContentView(R.layout.activity_main);
+
+        final ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayHomeAsUpEnabled(false);
+        actionBar.setTitle(null);
 
         compactCalendar = (CompactCalendarView) findViewById(R.id.compactcalendar_view);
         compactCalendar.setUseThreeLetterAbbreviation(true);
 
-        //Set an event for the dates
+        //Set an event for Teachers' Professional Day 2016 which is 21st of October
 
-        Event ev1 = new Event(Color.BLUE, 1672002000000L, "Christmas");
+        Event ev1 = new Event(Color.RED, 1477040400000L, "Teachers' Professional Day");
         compactCalendar.addEvent(ev1);
 
         compactCalendar.setListener(new CompactCalendarView.CompactCalendarViewListener() {
             @Override
             public void onDayClick(Date dateClicked) {
                 Context context = getApplicationContext();
-                if (dateClicked.toString().compareTo("Fri Dec 25 01:00:00 PST 2022") == 0) {
-                    Toast.makeText(context, "Christmas", Toast.LENGTH_SHORT).show();
+
+                if (dateClicked.toString().compareTo("Fri Oct 21 00:00:00 AST 2016") == 0) {
+                    Toast.makeText(context, "Teachers' Professional Day", Toast.LENGTH_SHORT).show();
                 }else {
                     Toast.makeText(context, "No Events Planned for that day", Toast.LENGTH_SHORT).show();
                 }
+
             }
+
             @Override
             public void onMonthScroll(Date firstDayOfNewMonth) {
-
+                actionBar.setTitle(dateFormatMonth.format(firstDayOfNewMonth));
             }
         });
     }

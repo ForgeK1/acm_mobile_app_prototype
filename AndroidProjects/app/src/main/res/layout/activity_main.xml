@@ -24,20 +24,6 @@
         android:layout_marginTop="10sp"
         />
 
-<!--    <com.github.sundeepk.compactcalendarview.CompactCalendarView-->
-<!--        android:id="@+id/compactcalendar_view"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="250dp"-->
-<!--        android:paddingLeft="5dp"-->
-<!--        android:paddingRight="5dp"-->
-<!--        app:compactCalendarBackgroundColor="#ffe95451"-->
-<!--        app:compactCalendarCurrentDayBackgroundColor="#B71C1C"-->
-<!--        app:compactCalendarCurrentSelectedDayBackgroundColor="#E57373"-->
-<!--        app:compactCalendarMultiEventIndicatorColor="#fff"-->
-<!--        app:compactCalendarTargetHeight="250dp"-->
-<!--        app:compactCalendarTextColor="#fff"-->
-<!--        app:compactCalendarTextSize="12sp" />-->
-
     <LinearLayout
         android:layout_width="360sp"
         android:layout_height="wrap_content"
@@ -46,11 +32,27 @@
         android:background="@drawable/bg_calender"
         android:typeface="serif">
 
-        <CalendarView
+        <com.github.sundeepk.compactcalendarview.CompactCalendarView
+            xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/compactcalendar_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal"></CalendarView>
+            android:layout_width="fill_parent"
+            android:paddingRight="10dp"
+            android:paddingLeft="10dp"
+            android:layout_height="250dp"
+            app:compactCalendarTargetHeight="250dp"
+            app:compactCalendarTextSize="12sp"
+            app:compactCalendarBackgroundColor="#ffe95451"
+            app:compactCalendarTextColor="#fff"
+            app:compactCalendarCurrentSelectedDayBackgroundColor="#E57373"
+            app:compactCalendarCurrentDayBackgroundColor="#B71C1C"
+            app:compactCalendarMultiEventIndicatorColor="#fff"
+            />
+
+<!--        <CalendarView-->
+<!--            android:id="@+id/calendar_view"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_gravity="center_horizontal"></CalendarView>-->
     </LinearLayout>
 
 </LinearLayout>
