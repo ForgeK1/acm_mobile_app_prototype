@@ -25,6 +25,7 @@
         />
 
     <LinearLayout
+        android:id="@+id/videocalendar"
         android:layout_width="360sp"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -32,27 +33,50 @@
         android:background="@drawable/bg_calender"
         android:typeface="serif">
 
-        <com.github.sundeepk.compactcalendarview.CompactCalendarView
-            xmlns:app="http://schemas.android.com/apk/res-auto"
+        <com.github.sundeepk.compactcalendarview.CompactCalendarView xmlns:app="http://schemas.android.com/apk/res-auto"
             android:id="@+id/compactcalendar_view"
             android:layout_width="fill_parent"
-            android:paddingRight="10dp"
-            android:paddingLeft="10dp"
             android:layout_height="250dp"
-            app:compactCalendarTargetHeight="250dp"
-            app:compactCalendarTextSize="12sp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
             app:compactCalendarBackgroundColor="#ffe95451"
-            app:compactCalendarTextColor="#fff"
-            app:compactCalendarCurrentSelectedDayBackgroundColor="#E57373"
             app:compactCalendarCurrentDayBackgroundColor="#B71C1C"
+            app:compactCalendarCurrentSelectedDayBackgroundColor="#E57373"
             app:compactCalendarMultiEventIndicatorColor="#fff"
-            />
+            app:compactCalendarTargetHeight="250dp"
+            app:compactCalendarTextColor="#fff"
+            app:compactCalendarTextSize="12sp" />
 
-        <CalendarView
-            android:id="@+id/acmcalendar_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="center_horizontal"></CalendarView>
+<!--        <CalendarView-->
+<!--            android:id="@+id/acmcalendar_view"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_gravity="center_horizontal"></CalendarView>-->
     </LinearLayout>
+
+    <TextView
+        android:layout_width="350sp"
+        android:layout_height="40sp"
+        android:layout_marginTop="10sp"
+        android:text="Events"
+        android:typeface="serif"
+        android:textAlignment="center"
+        android:textSize="30sp"
+        android:background="@drawable/bg_header"
+        android:textColor="@color/Navy"
+        android:layout_gravity="center_horizontal"
+        />
+
+    <TextView
+        android:id="@+id/textbox_forevents"
+        android:layout_width="350sp"
+        android:layout_height="280sp"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/bg_header"
+        android:text="Game Night: December 12, 2023    Room: A235"
+        android:textAlignment="center"
+        android:textColor="@color/Navy"
+        android:textSize="20sp"
+        android:typeface="serif" />
 
 </LinearLayout>
