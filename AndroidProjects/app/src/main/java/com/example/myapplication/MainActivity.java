@@ -40,8 +40,12 @@ public class MainActivity extends AppCompatActivity {
 
         //Set an event for Teachers' Professional Day 2016 which is 21st of October
 
-        Event ev1 = new Event(Color.WHITE, 1672036846000L, "Christmas");
+        Event ev1 = new Event(Color.BLUE, 1672036846000L, "Christmas");
+        Event ev2 = new Event(Color.BLUE, 1672598446000L, "New Years");
+        Event ev3 = new Event(Color.BLUE, 1672941600000L, "Game Night");
         compactCalendar.addEvent(ev1);
+        compactCalendar.addEvent(ev2);
+        compactCalendar.addEvent(ev3);
 
         compactCalendar.setListener(new CompactCalendarView.CompactCalendarViewListener() {
             @Override
@@ -52,10 +56,14 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(context, "Christmas", Toast.LENGTH_SHORT).show();
 
                     ((TextView)findViewById(R.id.textbox_forevents)).setText("Merry Christmas!");
-                }else {
-                    ((TextView)findViewById(R.id.textbox_forevents)).setText("Merry Christmas!");
+                }else if(dateClicked.toString().compareTo("Sun Jan 1 00:00:00 PST 2023") == 0){
+                    ((TextView)findViewById(R.id.textbox_forevents)).setText("New Year! take the day off :)");
+                }else if(dateClicked.toString().compareTo("Thu Jan 5 10:00:00 PST 2023") == 0){
+                    ((TextView)findViewById(R.id.textbox_forevents)).setText("Game Night: December 12, 2023    Room: A235Z");
                 }
-
+                else {
+                    ((TextView)findViewById(R.id.textbox_forevents)).setText("No Events Planned For Today!");
+                }
             }
 
             @Override
