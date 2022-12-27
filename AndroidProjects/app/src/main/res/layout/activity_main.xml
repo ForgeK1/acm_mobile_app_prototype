@@ -73,10 +73,10 @@
         android:layout_height="280sp"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/bg_header"
-        android:text="Game Night: December 12, 2023    Room: A235"
+        android:text="Nothing Planned For Today"
         android:textAlignment="center"
         android:textColor="@color/Navy"
-        android:textSize="20sp"
+        android:textSize="48sp"
         android:typeface="serif" />
 
 </LinearLayout>

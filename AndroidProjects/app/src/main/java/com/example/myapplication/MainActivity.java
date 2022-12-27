@@ -48,12 +48,12 @@ public class MainActivity extends AppCompatActivity {
             public void onDayClick(Date dateClicked) {
                 Context context = getApplicationContext();
 
-                if (dateClicked.toString().compareTo("Sun Dec 25 10:40:46 PST 2022") == 0) {
+                if (dateClicked.toString().compareTo("Sun Dec 25 00:00:00 PST 2022") == 0) {
                     Toast.makeText(context, "Christmas", Toast.LENGTH_SHORT).show();
 
                     ((TextView)findViewById(R.id.textbox_forevents)).setText("Merry Christmas!");
                 }else {
-                    Toast.makeText(context, "No Events Planned for that day", Toast.LENGTH_SHORT).show();
+                    ((TextView)findViewById(R.id.textbox_forevents)).setText("Merry Christmas!");
                 }
 
             }
