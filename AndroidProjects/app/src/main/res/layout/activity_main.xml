@@ -39,19 +39,16 @@
             android:layout_height="250dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
-            app:compactCalendarBackgroundColor="#ffe95451"
-            app:compactCalendarCurrentDayBackgroundColor="#B71C1C"
-            app:compactCalendarCurrentSelectedDayBackgroundColor="#E57373"
-            app:compactCalendarMultiEventIndicatorColor="#fff"
+            app:compactCalendarBackgroundColor="@color/grayWhite"
+            app:compactCalendarCurrentDayTextColor="@color/grayWhite"
+            app:compactCalendarCurrentDayBackgroundColor="@color/litePurple"
+            app:compactCalendarCurrentSelectedDayBackgroundColor="@color/litePurple"
+            app:compactCalendarCurrentSelectedDayTextColor="@color/Turq"
+
             app:compactCalendarTargetHeight="250dp"
-            app:compactCalendarTextColor="#fff"
+            app:compactCalendarTextColor="@color/Navy"
             app:compactCalendarTextSize="12sp" />
 
-<!--        <CalendarView-->
-<!--            android:id="@+id/acmcalendar_view"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="match_parent"-->
-<!--            android:layout_gravity="center_horizontal"></CalendarView>-->
     </LinearLayout>
 
     <TextView

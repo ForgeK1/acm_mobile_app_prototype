@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
         //Set an event for Teachers' Professional Day 2016 which is 21st of October
 
-        Event ev1 = new Event(Color.WHITE, 1672036846000L, "Christmas");
+        Event ev1 = new Event(Color.rgb(84,191,171), 1672036846000L, "Christmas");
         compactCalendar.addEvent(ev1);
 
         compactCalendar.setListener(new CompactCalendarView.CompactCalendarViewListener() {
@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
                     ((TextView)findViewById(R.id.textbox_forevents)).setText("Merry Christmas!");
                 }else {
-                    ((TextView)findViewById(R.id.textbox_forevents)).setText("Merry Christmas!");
+                    ((TextView)findViewById(R.id.textbox_forevents)).setText("Nothing Planned For Today");
                 }
 
             }
