@@ -2,8 +2,10 @@ package com.example.myapplication;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.motion.widget.Debug;
 
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -18,24 +20,26 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
+
     CompactCalendarView compactCalendar;
     private SimpleDateFormat dateFormatMonth = new SimpleDateFormat("MMMM- yyyy", Locale.getDefault());
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         final ActionBar actionBar = getSupportActionBar();
-        actionBar.setDisplayHomeAsUpEnabled(false);
-        actionBar.setTitle(null);
+//        actionBar.setDisplayHomeAsUpEnabled(false);
+//        actionBar.setTitle(null);
 
         compactCalendar = (CompactCalendarView) findViewById(R.id.compactcalendar_view);
         compactCalendar.setUseThreeLetterAbbreviation(true);
 
         //Set an event for Teachers' Professional Day 2016 which is 21st of October
 
-        Event ev1 = new Event(Color.RED, 1477040400000L, "Teachers' Professional Day");
+        Event ev1 = new Event(Color.WHITE, 1671958800000L, "Christmas");
         compactCalendar.addEvent(ev1);
 
         compactCalendar.setListener(new CompactCalendarView.CompactCalendarViewListener() {
@@ -43,8 +47,8 @@ public class MainActivity extends AppCompatActivity {
             public void onDayClick(Date dateClicked) {
                 Context context = getApplicationContext();
 
-                if (dateClicked.toString().compareTo("Fri Oct 21 00:00:00 AST 2016") == 0) {
-                    Toast.makeText(context, "Teachers' Professional Day", Toast.LENGTH_SHORT).show();
+                if (dateClicked.toString().compareTo("Fri Dec 25 00:00:00 PST 2022") == 0) {
+                    Toast.makeText(context, "Christmas", Toast.LENGTH_SHORT).show();
                 }else {
                     Toast.makeText(context, "No Events Planned for that day", Toast.LENGTH_SHORT).show();
                 }

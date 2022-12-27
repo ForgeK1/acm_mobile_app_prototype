@@ -48,11 +48,11 @@
             app:compactCalendarMultiEventIndicatorColor="#fff"
             />
 
-<!--        <CalendarView-->
-<!--            android:id="@+id/calendar_view"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:layout_gravity="center_horizontal"></CalendarView>-->
+        <CalendarView
+            android:id="@+id/acmcalendar_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"></CalendarView>
     </LinearLayout>
 
 </LinearLayout>
