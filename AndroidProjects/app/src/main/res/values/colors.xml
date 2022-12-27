@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="Navy">#061735</color>
+    <color name="purple_500">#32617B</color>
+    <color name="goldBrown">#6F613A</color>
+    <color name="gray">#6D6D6D</color>
+    <color name="whiteGray">#A5A5A5</color>
+    <color name="navyBlack">#131D29</color>
+    <color name="teal">#026E9F</color>
+    <color name="butterYellow">#B6A15E</color>
+    <color name="darkBlu">#0D3479</color>
+    <color name="blueGray">#4D7E85</color>
+    <color name="tan">#B79153</color>
+    <color name="grayWhite">#C5C5C5</color>
+    <color name="Turq">#54BFAB</color>
+    <color name="litePurple">#4646B4</color>
+    <color name="darkPurp">#5731AB</color>
+</resources>
