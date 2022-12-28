@@ -70,7 +70,7 @@
         android:layout_height="280sp"
         android:layout_gravity="center_horizontal"
         android:background="@drawable/bg_header"
-        android:text="Nothing Planned For Today"
+        android:text="No Events Planned For Today :("
         android:textAlignment="center"
         android:textColor="@color/Navy"
         android:textSize="48sp"

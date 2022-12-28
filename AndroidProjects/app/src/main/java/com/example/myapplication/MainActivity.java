@@ -40,8 +40,14 @@ public class MainActivity extends AppCompatActivity {
 
         //Set an event for Teachers' Professional Day 2016 which is 21st of October
 
-        Event ev1 = new Event(Color.WHITE, 1672036846000L, "Christmas");
+        Event ev1 = new Event(Color.rgb(84,191,171), 1672036846000L, "Christmas");
+        Event ev2 = new Event(Color.rgb(84,191,171), 1672563600000L, "New Years");
+        Event ev3 = new Event(Color.rgb(84,191,171), 1672736400000L, "Martin Luther King’s Birthday");
+        Event ev4 = new Event(Color.rgb(84,191,171), 1674464400000L, "Back To School");
         compactCalendar.addEvent(ev1);
+        compactCalendar.addEvent(ev2);
+        compactCalendar.addEvent(ev3);
+        compactCalendar.addEvent(ev4);
 
         compactCalendar.setListener(new CompactCalendarView.CompactCalendarViewListener() {
             @Override
@@ -49,13 +55,16 @@ public class MainActivity extends AppCompatActivity {
                 Context context = getApplicationContext();
 
                 if (dateClicked.toString().compareTo("Sun Dec 25 00:00:00 PST 2022") == 0) {
-                    Toast.makeText(context, "Christmas", Toast.LENGTH_SHORT).show();
-
                     ((TextView)findViewById(R.id.textbox_forevents)).setText("Merry Christmas!");
-                }else {
-                    ((TextView)findViewById(R.id.textbox_forevents)).setText("Merry Christmas!");
+                }else if (dateClicked.toString().compareTo("Sun Jan 01 00:00:00 PST 2023") == 0){
+                    ((TextView)findViewById(R.id.textbox_forevents)).setText("New Years!");
+                }else if (dateClicked.toString().compareTo("Tue Jan 03 00:00:00 PST 2023") == 0){
+                    ((TextView)findViewById(R.id.textbox_forevents)).setText("Martin Luther King’s Birthday");
+                }else if(dateClicked.toString().compareTo("Mon Jan 23 00:00:00 PST 2023") == 0){
+                    ((TextView)findViewById(R.id.textbox_forevents)).setText("Back To School!");
+                }else{
+                    ((TextView)findViewById(R.id.textbox_forevents)).setText("No Events Planned For Today :(");
                 }
-
             }
 
             @Override
