@@ -3,10 +3,10 @@
     <style name="Theme.MyApplication" parent="Theme.MaterialComponents.Light.DarkActionBar.Bridge">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/navyBlack</item>
-        <item name="colorPrimaryDark">@color/darkPurp</item>
+        <item name="colorPrimaryDark">#000000</item>
         <item name="colorOnPrimary">@color/Navy</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
+        <item name="android:statusBarColor">?attr/colorPrimaryDark</item>
         <!-- Customize your theme here. -->
     </style>
 </resources>
