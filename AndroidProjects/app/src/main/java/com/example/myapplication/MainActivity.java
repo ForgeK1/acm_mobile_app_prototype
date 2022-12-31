@@ -1,5 +1,7 @@
 package com.example.myapplication;
 
+import static android.app.PendingIntent.getActivity;
+
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.motion.widget.Debug;
@@ -7,8 +9,11 @@ import androidx.constraintlayout.motion.widget.Debug;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -23,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     CompactCalendarView compactCalendar;
+    Button button;
     private SimpleDateFormat dateFormatMonth = new SimpleDateFormat("MMMM - yyyy", Locale.getDefault());
 
     @SuppressLint("MissingInflatedId")
@@ -37,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
 
         compactCalendar = (CompactCalendarView) findViewById(R.id.compactcalendar_view);
         compactCalendar.setUseThreeLetterAbbreviation(true);
+
+         button= (Button)findViewById(R.id.new_event);
 
         //Set an event for Teachers' Professional Day 2016 which is 21st of October
 
@@ -72,5 +80,17 @@ public class MainActivity extends AppCompatActivity {
                 actionBar.setTitle(dateFormatMonth.format(firstDayOfNewMonth));
             }
         });
+
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openEventActivity();
+            }
+        });
+    }
+
+    public void openEventActivity() {
+        Intent intent = new Intent(this, SecondActivity.class);
+        startActivity(intent);
     }
 }
