@@ -21,8 +21,8 @@ public class CalendarUtils
         DateTimeFormatter formatter = null;
             formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
 
-            return date.format(formatter);
-
+            //return date.format(formatter);
+        return "";
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
