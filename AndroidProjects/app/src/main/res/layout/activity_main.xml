@@ -66,25 +66,26 @@
         android:layout_gravity="center_horizontal"
         />
 
-<!--    <TextView-->
-<!--        android:id="@+id/textbox_forevents"-->
-<!--        android:layout_width="360sp"-->
-<!--        android:layout_height="180sp"-->
-<!--        android:layout_gravity="center_horizontal"-->
-<!--        android:background="@drawable/bg_header"-->
-<!--        android:text="No Events Planned For Today :("-->
-<!--        android:textAlignment="center"-->
-<!--        android:textColor="@color/Navy"-->
-<!--        android:textSize="35sp"-->
-<!--        android:typeface="serif" />-->
-
-    <ListView
-        android:id="@+id/eventListView"
+    <TextView
+        android:id="@+id/textbox_forevents"
         android:layout_width="360sp"
         android:layout_height="180sp"
         android:layout_gravity="center_horizontal"
-        android:layout_weight="5"
-        android:background="@drawable/bg_header" />
+        android:background="@drawable/bg_header"
+        android:text="No Events Planned For Today :("
+        android:textAlignment="center"
+        android:textColor="@color/Navy"
+        android:textSize="35sp"
+        android:typeface="serif" />
+
+<!--    <ListView-->
+<!--        android:id="@+id/eventListView"-->
+<!--        android:layout_width="360sp"-->
+<!--        android:layout_height="180sp"-->
+<!--        android:layout_gravity="center_horizontal"-->
+<!--        android:layout_weight="5"-->
+<!--        android:background="@drawable/bg_header" />-->
+<!--&lt;!&ndash;        android:onClick="saveEventAction"&ndash;&gt;-->
 
     <Button
         android:id="@+id/new_event"

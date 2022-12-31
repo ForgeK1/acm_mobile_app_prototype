@@ -62,17 +62,17 @@ public class MainActivity extends AppCompatActivity {
             public void onDayClick(Date dateClicked) {
                 Context context = getApplicationContext();
 
-//                if (dateClicked.toString().compareTo("Sun Dec 25 00:00:00 PST 2022") == 0) {
-//                    ((TextView)findViewById(R.id.textbox_forevents)).setText("Merry Christmas!");
-//                }else if (dateClicked.toString().compareTo("Sun Jan 01 00:00:00 PST 2023") == 0){
-//                    ((TextView)findViewById(R.id.textbox_forevents)).setText("New Years!");
-//                }else if (dateClicked.toString().compareTo("Tue Jan 03 00:00:00 PST 2023") == 0){
-//                    ((TextView)findViewById(R.id.textbox_forevents)).setText("Martin Luther King’s Birthday");
-//                }else if(dateClicked.toString().compareTo("Mon Jan 23 00:00:00 PST 2023") == 0){
-//                    ((TextView)findViewById(R.id.textbox_forevents)).setText("Back To School!");
-//                }else{
-//                    ((TextView)findViewById(R.id.textbox_forevents)).setText("No Events Planned For Today :(");
-//                }
+                if (dateClicked.toString().compareTo("Sun Dec 25 00:00:00 PST 2022") == 0) {
+                    ((TextView)findViewById(R.id.textbox_forevents)).setText("Merry Christmas!");
+                }else if (dateClicked.toString().compareTo("Sun Jan 01 00:00:00 PST 2023") == 0){
+                    ((TextView)findViewById(R.id.textbox_forevents)).setText("New Years!");
+                }else if (dateClicked.toString().compareTo("Tue Jan 03 00:00:00 PST 2023") == 0){
+                    ((TextView)findViewById(R.id.textbox_forevents)).setText("Martin Luther King’s Birthday");
+                }else if(dateClicked.toString().compareTo("Mon Jan 23 00:00:00 PST 2023") == 0){
+                    ((TextView)findViewById(R.id.textbox_forevents)).setText("Back To School!");
+                }else{
+                    ((TextView)findViewById(R.id.textbox_forevents)).setText("No Events Planned For Today :(");
+                }
             }
 
             @Override
@@ -92,5 +92,9 @@ public class MainActivity extends AppCompatActivity {
     public void openEventActivity() {
         Intent intent = new Intent(this, EventActivity.class);
         startActivity(intent);
+    }
+
+    public void openNewActivity(){
+
     }
 }
