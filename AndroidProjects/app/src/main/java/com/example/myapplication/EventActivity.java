@@ -33,8 +33,8 @@ public class EventActivity extends AppCompatActivity
     private void initWidgets()
     {
         eventNameET = findViewById(R.id.eventNameET);
-        eventDateTV = findViewById(R.id.eventDateTV);
-        eventTimeTV = findViewById(R.id.eventTimeTV);
+        eventDateTV = findViewById(R.id.eventDateET);
+        eventTimeTV = findViewById(R.id.eventTimeET);
     }
 
     public void saveEventAction(View view)

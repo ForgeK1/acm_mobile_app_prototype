@@ -51,6 +51,26 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
+        android:text="Time:"
+        android:textSize="20sp"
+        android:textAlignment="center"
+        android:textColor="@color/navyBlack"/>
+
+    <EditText
+        android:id="@+id/eventTimeET"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="20sp"
+        android:ems="10"
+        android:text=""/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
         android:text="Date:"
         android:textSize="20sp"
         android:textAlignment="center"
