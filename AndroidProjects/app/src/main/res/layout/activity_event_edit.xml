@@ -27,26 +27,43 @@
         android:inputType="text"/>
 
     <TextView
-        android:id="@+id/eventDateTV"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:text="Date"
+        android:layout_marginTop="10dp"
+        android:text="Event Description:"
         android:textSize="20sp"
         android:textAlignment="center"
         android:textColor="@color/navyBlack"/>
 
-    <TextView
-        android:id="@+id/eventTimeTV"
+    <EditText
+        android:id="@+id/eventDescriptionET"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:text="Time"
+        android:textSize="20sp"
+        android:ems="10"
+        android:text=""/>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="Date:"
         android:textSize="20sp"
         android:textAlignment="center"
         android:textColor="@color/navyBlack"/>
+
+    <EditText
+        android:id="@+id/eventDateET"
+        android:layout_width="288dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:text=""
+        android:textSize="20sp" />
 
     <Button
         android:layout_marginTop="20dp"
@@ -59,5 +76,72 @@
         android:onClick="saveEventAction"
         android:layout_gravity="center"
         android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="40dp"
+        android:text="Example"
+        android:textColor="@color/Navy"
+        android:textSize="20sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="Name:"
+        android:textSize="10sp"
+        android:textAlignment="center"
+        android:textColor="@color/navyBlack"/>
+
+    <EditText
+        android:id="@+id/eventNameETExample"
+        android:layout_width="188dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:text="First General Meeting (In-Person)"
+        android:textSize="10sp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="Event Description:"
+        android:textSize="10sp"
+        android:textAlignment="center"
+        android:textColor="@color/navyBlack"/>
+
+    <EditText
+        android:id="@+id/eventDescriptionETExample"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:textSize="10sp"
+        android:ems="10"
+        android:text="ACM will be giving away $1000 total in scholarships. 4 winners x $250 prize! Submit the application before March 17."/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="10dp"
+        android:text="Date:"
+        android:textSize="10sp"
+        android:textAlignment="center"
+        android:textColor="@color/navyBlack"/>
+
+    <EditText
+        android:id="@+id/eventDateETExample"
+        android:layout_width="195dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:text="Sun Dec 25 00:00:00 PST 2023"
+        android:textSize="10sp" />
 
 </LinearLayout>
