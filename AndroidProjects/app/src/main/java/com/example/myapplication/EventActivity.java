@@ -26,8 +26,8 @@ public class EventActivity extends AppCompatActivity
         setContentView(R.layout.activity_event_edit);
         initWidgets();
         time = LocalTime.now();
-        //eventDateTV.setText("Date: " + CalendarUtils.formattedDate(CalendarUtils.selectedDate));
-        eventTimeTV.setText("Time: " + CalendarUtils.formattedTime(time));
+        eventDateTV.setText("Date: " + CalendarUtils.formattedDate(CalendarUtils.selectedDate));
+        eventTimeTV.setText(CalendarUtils.formattedTime(time));
     }
 
     private void initWidgets()
