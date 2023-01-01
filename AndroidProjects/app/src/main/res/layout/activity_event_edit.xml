@@ -28,7 +28,8 @@
         app:autoSizeMinTextSize="12sp"
         app:autoSizeMaxTextSize="100sp"
         android:ems="10"
-        android:text=""/>
+        android:text=""
+        android:inputType="text"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -47,6 +48,7 @@
         android:layout_gravity="center"
         app:autoSizeMinTextSize="12sp"
         app:autoSizeMaxTextSize="100sp"
+        android:maxLength="50"
         android:textSize="20sp"
         android:ems="10"
         android:text=""/>
@@ -68,6 +70,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:textSize="20sp"
+        android:inputType="text"
         app:autoSizeMinTextSize="12sp"
         app:autoSizeMaxTextSize="100sp"
         android:ems="10"
@@ -92,6 +95,7 @@
         android:ems="10"
         android:text=""
         android:hint="E.g: Sun Dec 25 2023"
+        android:inputType="text"
         android:textSize="20sp" />
 
     <Button
