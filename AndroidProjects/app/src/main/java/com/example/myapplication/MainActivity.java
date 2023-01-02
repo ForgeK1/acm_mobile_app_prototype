@@ -8,8 +8,10 @@ import androidx.constraintlayout.motion.widget.Debug;
 
 
 import android.annotation.SuppressLint;
+import android.app.AlarmManager;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
@@ -23,14 +25,22 @@ import android.widget.Toast;
 
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class MainActivity extends AppCompatActivity {
 
 
+    private Calendar calendar;
+    private AlarmManager alarmManager;
+    private PendingIntent pendingIntent;
     private CompactCalendarView compactCalendar;
     private Button button;
     private ListView listView;
@@ -43,16 +53,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         createNotificationChannel();
 
+        try {
+            checkTodaysDate();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
         final ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(false);
         actionBar.setTitle(null);
-
-        //checks if today a event is scheduled
-        Date todayDate = Calendar.getInstance().getTime();
-        SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-        String todayString = formatter.format(todayDate);
-
-
 
         compactCalendar = (CompactCalendarView) findViewById(R.id.compactcalendar_view);
         compactCalendar.setUseThreeLetterAbbreviation(true);
@@ -102,8 +111,27 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    public void createNoti(String title, String body){
+    private void setTime(int hour, int min){
+        Calendar c= Calendar.getInstance();
+        c.set(Calendar.HOUR_OF_DAY,hour);
+        c.set(Calendar.MINUTE,min);
+        c.set(Calendar.SECOND,0);
 
+        setAlarm(c);
+
+    }
+
+    private void setAlarm(Calendar c) {
+
+        alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+
+        Intent intent = new Intent(this,AlarmReceiver.class);
+
+        pendingIntent = PendingIntent.getBroadcast(this,1,intent,0);
+
+        alarmManager.setExact(AlarmManager.RTC_WAKEUP,c.getTimeInMillis(),pendingIntent);
+
+        Toast.makeText(this, "Alarm set Successfully", Toast.LENGTH_SHORT).show();
     }
 
     private void createNotificationChannel() {
@@ -118,6 +146,17 @@ public class MainActivity extends AppCompatActivity {
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
 
+        }
+    }
+
+    private void checkTodaysDate() throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        String date = sdf.format(Calendar.getInstance().getTime());
+        Date current = sdf.parse(date);
+        Date date2 = sdf.parse("01/02/2023");
+
+        if (current.equals(date2)) {
+            setTime(1,12);
         }
     }
 
