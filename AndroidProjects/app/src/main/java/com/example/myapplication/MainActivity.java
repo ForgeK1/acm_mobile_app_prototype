@@ -17,13 +17,13 @@ import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
-import com.github.sundeepk.compactcalendarview.domain.Event;
-
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
@@ -31,8 +31,9 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
 
 
-    CompactCalendarView compactCalendar;
-    Button button;
+    private CompactCalendarView compactCalendar;
+    private Button button;
+    private ListView listView;
     private SimpleDateFormat dateFormatMonth = new SimpleDateFormat("MMMM - yyyy", Locale.getDefault());
 
     @SuppressLint("MissingInflatedId")
@@ -56,19 +57,19 @@ public class MainActivity extends AppCompatActivity {
         compactCalendar = (CompactCalendarView) findViewById(R.id.compactcalendar_view);
         compactCalendar.setUseThreeLetterAbbreviation(true);
 
-         button= (Button)findViewById(R.id.new_event);
-
+        button= (Button)findViewById(R.id.new_event);
+        listView = findViewById(R.id.eventListView);
         //Set an event for Teachers' Professional Day 2016 which is 21st of October
 
-        Event ev1 = new Event(Color.rgb(84,191,171), 1672036846000L, "Christmas");
-        Event ev2 = new Event(Color.rgb(84,191,171), 1672563600000L, "New Years");
-        Event ev3 = new Event(Color.rgb(84,191,171), 1672736400000L, "Martin Luther King’s Birthday");
-        Event ev4 = new Event(Color.rgb(84,191,171), 1674464400000L, "Back To School");
-        compactCalendar.addEvent(ev1);
-        compactCalendar.addEvent(ev2);
-        compactCalendar.addEvent(ev3);
-        compactCalendar.addEvent(ev4);
-
+//        Event ev1 = new Event(Color.rgb(84,191,171), 1672036846000L, "Christmas");
+//        Event ev2 = new Event(Color.rgb(84,191,171), 1672563600000L, "New Years");
+//        Event ev3 = new Event(Color.rgb(84,191,171), 1672736400000L, "Martin Luther King’s Birthday");
+//        Event ev4 = new Event(Color.rgb(84,191,171), 1674464400000L, "Back To School");
+//        compactCalendar.addEvent(ev1);
+//        compactCalendar.addEvent(ev2);
+//        compactCalendar.addEvent(ev3);
+//        compactCalendar.addEvent(ev4);
+        setEventAdpater();
         compactCalendar.setListener(new CompactCalendarView.CompactCalendarViewListener() {
             @Override
             public void onDayClick(Date dateClicked) {
@@ -127,5 +128,12 @@ public class MainActivity extends AppCompatActivity {
 
     public void openNewActivity(){
 
+    }
+
+    private void setEventAdpater()
+    {
+        ArrayList<Event> dailyEvents = Event.eventsForDate(CalendarUtils.selectedDate);
+        EventAdapter eventAdapter = new EventAdapter(getApplicationContext(), dailyEvents);
+        listView.setAdapter(eventAdapter);
     }
 }

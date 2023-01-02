@@ -4,12 +4,15 @@ import android.os.Build;
 
 import androidx.annotation.RequiresApi;
 
+import java.text.DateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.YearMonth;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class CalendarUtils
 {
@@ -18,11 +21,12 @@ public class CalendarUtils
     @RequiresApi(api = Build.VERSION_CODES.O)
     public static String formattedDate(LocalDate date)
     {
-        DateTimeFormatter formatter = null;
-            formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
-
+//        DateTimeFormatter formatter = null;
+//            formatter = DateTimeFormatter.ofPattern("dd MMMM yyyy");
 //            return date.format(formatter);
-        return "";
+        Date currentTime = Calendar.getInstance().getTime();
+        String formatteddate = DateFormat.getDateInstance().format(currentTime);
+        return formatteddate;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
