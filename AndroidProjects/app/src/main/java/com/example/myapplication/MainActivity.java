@@ -143,7 +143,6 @@ public class MainActivity extends AppCompatActivity {
         Calendar c= Calendar.getInstance();
         c.set(Calendar.HOUR_OF_DAY,hour);
         c.set(Calendar.MINUTE,min);
-        c.set(Calendar.SECOND,0);
 
         setAlarm(c);
 
