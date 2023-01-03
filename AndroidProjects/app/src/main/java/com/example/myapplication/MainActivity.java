@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         createNotificationChannel();
 
         try {
-            //needs to be in 24 hour format
+            //needs to be in a 24 hour format
             checkTodaysDate(23,42);
         } catch (ParseException e) {
             e.printStackTrace();
