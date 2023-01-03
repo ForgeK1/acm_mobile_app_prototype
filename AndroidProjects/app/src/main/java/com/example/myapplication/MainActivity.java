@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         createNotificationChannel();
 
         try {
-            checkTodaysDate(5,42);
+            checkTodaysDate(5,41);
         } catch (ParseException e) {
             e.printStackTrace();
         }
