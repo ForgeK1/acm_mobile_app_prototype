@@ -143,7 +143,6 @@ public class MainActivity extends AppCompatActivity {
         Calendar c= Calendar.getInstance();
         c.set(Calendar.HOUR_OF_DAY,hour);
         c.set(Calendar.MINUTE,min);
-        c.set(Calendar.SECOND,0);
 
         setAlarm(c);
 
@@ -155,7 +154,7 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this,AlarmReceiver.class);
 
-        pendingIntent = PendingIntent.getBroadcast(this,1,intent,0);
+        pendingIntent = PendingIntent.getBroadcast(this,1,intent,PendingIntent.FLAG_IMMUTABLE);
 
         alarmManager.setExact(AlarmManager.RTC_WAKEUP,c.getTimeInMillis(),pendingIntent);
 
