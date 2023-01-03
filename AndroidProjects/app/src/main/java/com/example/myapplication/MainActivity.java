@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             //needs to be in a 24 hour format
-            checkTodaysDate(14,34);
+            checkTodaysDate(15,47);
         } catch (ParseException e) {
             e.printStackTrace();
         }
