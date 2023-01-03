@@ -20,21 +20,36 @@ public class AlarmReceiver extends BroadcastReceiver {
     String body;
     @Override
     public void onReceive(Context context, Intent intent) {
+        Date date2 = null;
+        Date current = null;
+
 
         //checks if today a event is scheduled
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
         String date = sdf.format(Calendar.getInstance().getTime());
 
-        Date current = null;
+        Date genMeeting1 = null;
         try {
+            genMeeting1 = sdf.parse("01/05/2023");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        Date gameNight = null;
+        try {
+            gameNight = sdf.parse("01/06/2023");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            //current = sdf.parse("01/04/2023");
             current = sdf.parse(date);
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
-        Date date2 = null;
         try {
-            date2 = sdf.parse("01/03/2023");
+            date2 = sdf.parse("01/04/2023");
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -42,17 +57,22 @@ public class AlarmReceiver extends BroadcastReceiver {
         if (current.equals(date2)) {
             title = "Hello";
             body = "Good day there";
-        }
-        else {
+        } else if (current.equals(genMeeting1)) {
+            title = "General Meeting";
+            body = "Meeting today at 3:00 Room 350";
+        } else if (current.equals(gameNight)) {
+            title = "Game Night";
+            body = "Come to room ET:345 at 3:00 for some fun games with fellow ACM members with some awesome prizes";
+        } else {
             title = "Goodbye";
             body = "Goodnight";
         }
 
-        Intent i = new Intent(context,SecondActivity.class);
+        Intent i = new Intent(context, SecondActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context,1,i,0);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 1, i, 0);
 
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(context,"ACM")
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "ACM")
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
                 .setContentTitle(title)
                 .setContentText(body)
@@ -62,7 +82,7 @@ public class AlarmReceiver extends BroadcastReceiver {
                 .setContentIntent(pendingIntent);
 
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(context);
-        notificationManagerCompat.notify(123,builder.build());
+        notificationManagerCompat.notify(123, builder.build());
 
 
     }

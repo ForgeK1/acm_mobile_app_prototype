@@ -54,7 +54,8 @@ public class MainActivity extends AppCompatActivity {
         createNotificationChannel();
 
         try {
-            checkTodaysDate(5,41);
+            //needs to be in 24 hour format
+            checkTodaysDate(23,42);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -111,6 +112,33 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
+    private void createNotificationChannel() {
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+            CharSequence name = "ACMReminderChannel";
+            String description = "Channel For Alarm Manager";
+            int importance = NotificationManager.IMPORTANCE_HIGH;
+            NotificationChannel channel = new NotificationChannel("ACM",name,importance);
+            channel.setDescription(description);
+
+            NotificationManager notificationManager = getSystemService(NotificationManager.class);
+            notificationManager.createNotificationChannel(channel);
+
+        }
+    }
+    //needs to be in 24 format
+    private void checkTodaysDate(int hour,int min) throws ParseException {
+        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        String date = sdf.format(Calendar.getInstance().getTime());
+        Date current = sdf.parse(date);
+        Date date2 = sdf.parse("01/02/2023");
+
+        if (current.equals(date2)) {
+            setTime(hour,min);
+        }
+    }
+
+
     private void setTime(int hour, int min){
         Calendar c= Calendar.getInstance();
         c.set(Calendar.HOUR_OF_DAY,hour);
@@ -132,32 +160,6 @@ public class MainActivity extends AppCompatActivity {
         alarmManager.setExact(AlarmManager.RTC_WAKEUP,c.getTimeInMillis(),pendingIntent);
 
         Toast.makeText(this, "Alarm set Successfully", Toast.LENGTH_SHORT).show();
-    }
-
-    private void createNotificationChannel() {
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
-            CharSequence name = "ACMReminderChannel";
-            String description = "Channel For Alarm Manager";
-            int importance = NotificationManager.IMPORTANCE_HIGH;
-            NotificationChannel channel = new NotificationChannel("ACM",name,importance);
-            channel.setDescription(description);
-
-            NotificationManager notificationManager = getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(channel);
-
-        }
-    }
-
-    private void checkTodaysDate(int hour, int min) throws ParseException {
-        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
-        String date = sdf.format(Calendar.getInstance().getTime());
-        Date current = sdf.parse(date);
-        Date date2 = sdf.parse("01/02/2023");
-
-        if (current.equals(date2)) {
-            setTime(hour,min);
-        }
     }
 
     public void openEventActivity() {
