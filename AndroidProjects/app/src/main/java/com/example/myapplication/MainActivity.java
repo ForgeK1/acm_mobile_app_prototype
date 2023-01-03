@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             //needs to be in a 24 hour format
-            checkTodaysDate(14,20);
+            checkTodaysDate(23,42);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity {
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
         String date = sdf.format(Calendar.getInstance().getTime());
         Date current = sdf.parse(date);
-        Date date2 = sdf.parse("01/03/2023");
+        Date date2 = sdf.parse("01/02/2023");
 
         if (current.equals(date2)) {
             setTime(hour,min);
