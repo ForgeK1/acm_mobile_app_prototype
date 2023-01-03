@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             //needs to be in a 24 hour format
-            checkTodaysDate(15,47);
+            checkTodaysDate(14,34);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void createNotificationChannel() {
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             CharSequence name = "ACMReminderChannel";
             String description = "Channel For Alarm Manager";
             int importance = NotificationManager.IMPORTANCE_HIGH;
@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
 
-        }
+//        }
     }
     //needs to be in 24 format
     private void checkTodaysDate(int hour,int min) throws ParseException {

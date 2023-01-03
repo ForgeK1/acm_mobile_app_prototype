@@ -12,15 +12,14 @@
         android:id="@+id/date_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="ACM Reminder"
-        android:typeface="serif"
-        android:textAlignment="center"
-        android:textSize="23sp"
-        android:textColor="@color/grayWhite"
-        android:textStyle="bold"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10sp"
-        />
+        android:text="ACM Reminder"
+        android:textAlignment="center"
+        android:textColor="@color/grayWhite"
+        android:textSize="23sp"
+        android:textStyle="bold"
+        android:typeface="serif" />
 
 
     <TextView
@@ -38,7 +37,7 @@
     <TextView
         android:layout_width="350sp"
         android:layout_height="280sp"
-        android:text="Game Night: December 12, 2023    Room: A235"
+        android:id="@+id/event_view"
         android:typeface="serif"
         android:textAlignment="center"
         android:textSize="20sp"
