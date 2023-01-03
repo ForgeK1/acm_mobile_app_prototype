@@ -36,7 +36,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         }
         Date gameNight = null;
         try {
-            gameNight = sdf.parse("01/06/2023");
+            gameNight = sdf.parse("01/03/2023");
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -49,7 +49,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         }
 
         try {
-            date2 = sdf.parse("01/03/2023");
+            date2 = sdf.parse("01/06/2023");
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -73,7 +73,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         PendingIntent pendingIntent = PendingIntent.getActivity(context, 1, i, PendingIntent.FLAG_IMMUTABLE);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "ACM")
-                .setSmallIcon(R.drawable.ic_launcher_foreground)
+                .setSmallIcon(R.drawable.ic_party)
                 .setContentTitle(title)
                 .setContentText(body)
                 .setAutoCancel(true)
