@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         createNotificationChannel();
 
         try {
-            checkTodaysDate();
+            checkTodaysDate(5,42);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -149,14 +149,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void checkTodaysDate() throws ParseException {
+    private void checkTodaysDate(int hour, int min) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
         String date = sdf.format(Calendar.getInstance().getTime());
         Date current = sdf.parse(date);
         Date date2 = sdf.parse("01/02/2023");
 
         if (current.equals(date2)) {
-            setTime(1,12);
+            setTime(hour,min);
         }
     }
 
