@@ -49,7 +49,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         }
 
         try {
-            date2 = sdf.parse("01/04/2023");
+            date2 = sdf.parse("01/03/2023");
         } catch (ParseException e) {
             e.printStackTrace();
         }
