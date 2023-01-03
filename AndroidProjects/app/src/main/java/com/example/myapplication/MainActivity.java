@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void createNotificationChannel() {
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
+//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             CharSequence name = "ACMReminderChannel";
             String description = "Channel For Alarm Manager";
             int importance = NotificationManager.IMPORTANCE_HIGH;
@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
 
-        }
+//        }
     }
     //needs to be in 24 format
     private void checkTodaysDate(int hour,int min) throws ParseException {
@@ -155,7 +155,7 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = new Intent(this,AlarmReceiver.class);
 
-        pendingIntent = PendingIntent.getBroadcast(this,1,intent,0);
+        pendingIntent = PendingIntent.getBroadcast(this,1,intent,PendingIntent.FLAG_IMMUTABLE);
 
         alarmManager.setExact(AlarmManager.RTC_WAKEUP,c.getTimeInMillis(),pendingIntent);
 

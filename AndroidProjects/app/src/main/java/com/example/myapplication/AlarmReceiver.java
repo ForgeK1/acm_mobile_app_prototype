@@ -70,7 +70,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         Intent i = new Intent(context, SecondActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        PendingIntent pendingIntent = PendingIntent.getActivity(context, 1, i, 0);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 1, i, PendingIntent.FLAG_IMMUTABLE);
 
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "ACM")
                 .setSmallIcon(R.drawable.ic_launcher_foreground)
