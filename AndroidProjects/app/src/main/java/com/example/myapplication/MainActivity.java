@@ -55,14 +55,14 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             //needs to be in a 24 hour format
-            checkTodaysDate(14,34);
+            checkTodaysDate(16,57);
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
         final ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(false);
-        actionBar.setTitle(null);
+        //actionBar.setTitle(dateFormatMonth.format(compactCalendar.));
 
         compactCalendar = (CompactCalendarView) findViewById(R.id.compactcalendar_view);
         compactCalendar.setUseThreeLetterAbbreviation(true);
