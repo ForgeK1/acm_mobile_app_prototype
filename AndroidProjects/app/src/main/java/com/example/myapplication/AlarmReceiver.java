@@ -36,7 +36,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         }
         Date gameNight = null;
         try {
-            gameNight = sdf.parse("01/03/2023");
+            gameNight = sdf.parse("01/04/2023");
         } catch (ParseException e) {
             e.printStackTrace();
         }
