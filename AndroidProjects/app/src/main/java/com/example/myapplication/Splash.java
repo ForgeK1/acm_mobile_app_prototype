@@ -21,7 +21,7 @@ public class Splash extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.splash_page);
 
-        Animation zoom = new AlphaAnimation(1,0);
+        Animation zoom = new AlphaAnimation(0,1);
         zoom.setInterpolator(new AccelerateInterpolator());
         zoom.setStartOffset(500);
         zoom.setDuration(1800);
