@@ -10,8 +10,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.time.LocalTime;
 
@@ -43,9 +45,11 @@ public class EventActivity extends AppCompatActivity
 
     public void saveEventAction(View view)
     {
+        String path = "/res/raw/eventdatabases.csv";
+        File file = new File(path);
         String eventName = eventNameET.getText().toString();
         try {
-            BufferedWriter bw = new BufferedWriter(new FileWriter("eventdatabases.csv"));
+            BufferedWriter bw = new BufferedWriter(new FileWriter(file.getPath()));
             bw.write(eventName + ", " + eventTimeTV.toString() + ", " + eventDateTV.toString());
         } catch (IOException e) {
             e.printStackTrace();
