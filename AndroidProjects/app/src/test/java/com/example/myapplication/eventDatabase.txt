@@ -1,0 +1,2 @@
+Name, Event Description, Time, Date,
+General Meeting, Our first ever general meeting, 05:30:00 PM, 1/6/2023
