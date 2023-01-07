@@ -24,6 +24,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.sundeepk.compactcalendarview.CompactCalendarView;
+
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -34,6 +39,7 @@ import java.util.Locale;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import com.example.myapplication.Event;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -55,14 +61,14 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             //needs to be in a 24 hour format
-            checkTodaysDate(14,34);
+            checkTodaysDate(16,57);
         } catch (ParseException e) {
             e.printStackTrace();
         }
 
         final ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayHomeAsUpEnabled(false);
-        actionBar.setTitle(null);
+        //actionBar.setTitle(dateFormatMonth.format(compactCalendar.));
 
         compactCalendar = (CompactCalendarView) findViewById(R.id.compactcalendar_view);
         compactCalendar.setUseThreeLetterAbbreviation(true);
@@ -110,6 +116,22 @@ public class MainActivity extends AppCompatActivity {
                 openEventActivity();
             }
         });
+    }
+
+    private void parseCSVFile(){
+        String path = "eventDatabase.csv";
+        String line = "";
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(path));
+            while((line = br.readLine()) != null){
+                String[] parser = line.split(",");
+                System.out.println(parser);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void createNotificationChannel() {
@@ -162,6 +184,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openEventActivity() {
+        parseCSVFile();
         Intent intent = new Intent(this, EventActivity.class);
         startActivity(intent);
     }
