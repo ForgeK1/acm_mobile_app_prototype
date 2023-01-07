@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void parseCSVFile(){
-        String path = "eventDatabase.csv";
+        String path = "C:\\Users\\zain\\StudioProjects\\acm_mobile_app\\AndroidProjects\\app\\src\\main\\res\\raw\\eventdatabases.csv";
         String line = "";
         try {
             BufferedReader br = new BufferedReader(new FileReader(path));
