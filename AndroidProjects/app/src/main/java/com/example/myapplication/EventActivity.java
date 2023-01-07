@@ -9,6 +9,10 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.time.LocalTime;
 
 public class EventActivity extends AppCompatActivity
@@ -40,6 +44,12 @@ public class EventActivity extends AppCompatActivity
     public void saveEventAction(View view)
     {
         String eventName = eventNameET.getText().toString();
+        try {
+            BufferedWriter bw = new BufferedWriter(new FileWriter("eventdatabases.csv"));
+            bw.write(eventName + ", " + eventTimeTV.toString() + ", " + eventDateTV.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         Event newEvent = new Event(eventName, CalendarUtils.selectedDate, time);
         Event.eventsList.add(newEvent);
         finish();
