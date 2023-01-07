@@ -29,6 +29,9 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -119,19 +122,32 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void parseCSVFile(){
-        String path = "C:\\Users\\zain\\StudioProjects\\acm_mobile_app\\AndroidProjects\\app\\src\\main\\res\\raw\\eventdatabases.csv";
+        InputStream path = getResources().openRawResource(R.raw.eventdatabases);
         String line = "";
+        ArrayList<String> names = new ArrayList<>();
+        ArrayList<String> descp = new ArrayList<>();
+        ArrayList<String> date = new ArrayList<>();
         try {
-            BufferedReader br = new BufferedReader(new FileReader(path));
+            BufferedReader br = new BufferedReader(new InputStreamReader(path, Charset.forName("UTF-8")));
+            //skipping the titles
+            br.readLine();
             while((line = br.readLine()) != null){
                 String[] parser = line.split(",");
-                System.out.println(parser);
+                names.add(parser[0]);
+                descp.add(parser[1]);
+                date.add(parser[3]);
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
         }
+        for (int i = 0; i < names.size(); i++) {
+            System.out.println("Name: " + names.get(i));
+            System.out.println("description: " + descp.get(i));
+            System.out.println("date: " +date.get(i));
+        }
+
     }
 
     private void createNotificationChannel() {
