@@ -2,9 +2,12 @@ package com.example.myapplication;
 
 import static android.app.PendingIntent.getActivity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.motion.widget.Debug;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 
 import android.annotation.SuppressLint;
@@ -17,6 +20,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
@@ -37,12 +41,18 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import com.example.myapplication.Event;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -54,6 +64,14 @@ public class MainActivity extends AppCompatActivity {
     private Button button;
     private ListView listView;
     private SimpleDateFormat dateFormatMonth = new SimpleDateFormat("MMMM - yyyy", Locale.getDefault());
+
+    // creating variables for our recycler view,
+    // array list, adapter, firebase firestore
+    // and our progress bar.
+    private RecyclerView recyclerView;
+    private ArrayList<CalendarEvent> calendarEventArrayList;
+    private CalendarEventAdapter calendarEventAdapter;
+    private FirebaseFirestore db;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -76,6 +94,15 @@ public class MainActivity extends AppCompatActivity {
         compactCalendar = (CompactCalendarView) findViewById(R.id.compactcalendar_view);
         compactCalendar.setUseThreeLetterAbbreviation(true);
 
+        // initializing our variables.
+        recyclerView = findViewById(R.id.eventRecyclerView);
+        db = FirebaseFirestore.getInstance();
+        calendarEventArrayList = new ArrayList<>();
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        calendarEventAdapter = new CalendarEventAdapter(calendarEventArrayList, this);
+        recyclerView.setAdapter(calendarEventAdapter);
+
         button= (Button)findViewById(R.id.new_event);
         listView = findViewById(R.id.eventListView);
         //Set an event for Teachers' Professional Day 2016 which is 21st of October
@@ -88,12 +115,56 @@ public class MainActivity extends AppCompatActivity {
 //        compactCalendar.addEvent(ev2);
 //        compactCalendar.addEvent(ev3);
 //        compactCalendar.addEvent(ev4);
-        setEventAdpater();
+//        setEventAdpater();
         compactCalendar.setListener(new CompactCalendarView.CompactCalendarViewListener() {
             @Override
             public void onDayClick(Date dateClicked) {
                 Context context = getApplicationContext();
+                Log.d("calendar date", dateClicked.toString());
+                // *
+                // db.collection("events").whereEqualsTo("Data",dateClicked).get()
+                // *//
+                db.collection("events")
+                        .get()
+                        .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                            @Override
+                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                                // after getting the data we are calling on success method
+                                // and inside this method we are checking if the received
+                                // query snapshot is empty or not.
+                                if (!queryDocumentSnapshots.isEmpty()) {
+                                    // if the snapshot is not empty we are
+                                    // hiding our progress bar and adding
+                                    // our data in a list.
 
+                                    List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
+                                    for (DocumentSnapshot d : list) {
+                                        // after getting this list we are passing
+                                        // that list to our object class.
+
+                                        CalendarEvent c = d.toObject(CalendarEvent.class);
+                                        // and we will pass this object class
+                                        // inside our arraylist which we have
+                                        // created for recycler view.
+                                        calendarEventArrayList.add(c);
+                                    }
+                                    // after adding the data to recycler view.
+                                    // we are calling recycler view notifyDataSetChanged
+                                    // method to notify that data has been changed in recycler view.
+                                    calendarEventAdapter.notifyDataSetChanged();
+                                } else {
+                                    // if the snapshot is empty we are displaying a toast message.
+                                    Toast.makeText(MainActivity.this, "No data found in Database", Toast.LENGTH_SHORT).show();
+                                }
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                // if we do not get any data or any error we are displaying
+                                // a toast message that we do not get any data
+                                Toast.makeText(MainActivity.this, "Fail to get the data.", Toast.LENGTH_SHORT).show();
+                            }
+                        });
 //                if (dateClicked.toString().compareTo("Sun Dec 25 00:00:00 PST 2022") == 0) {
 //                    ((TextView)findViewById(R.id.textbox_forevents)).setText("Merry Christmas!");
 //                }else if (dateClicked.toString().compareTo("Sun Jan 01 00:00:00 PST 2023") == 0){
@@ -122,31 +193,31 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void parseCSVFile(){
-        InputStream path = getResources().openRawResource(R.raw.eventdatabases);
-        String line = "";
-        ArrayList<String> names = new ArrayList<>();
-        ArrayList<String> descp = new ArrayList<>();
-        ArrayList<String> date = new ArrayList<>();
-        try {
-            BufferedReader br = new BufferedReader(new InputStreamReader(path, Charset.forName("UTF-8")));
-            //skipping the titles
-            br.readLine();
-            while((line = br.readLine()) != null){
-                String[] parser = line.split(",");
-                names.add(parser[0]);
-                descp.add(parser[1]);
-                date.add(parser[3]);
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        for (int i = 0; i < names.size(); i++) {
-            System.out.println("Name: " + names.get(i));
-            System.out.println("description: " + descp.get(i));
-            System.out.println("date: " +date.get(i));
-        }
+//        InputStream path = getResources().openRawResource(R.raw.eventdatabases);
+//        String line = "";
+//        ArrayList<String> names = new ArrayList<>();
+//        ArrayList<String> descp = new ArrayList<>();
+//        ArrayList<String> date = new ArrayList<>();
+//        try {
+//            BufferedReader br = new BufferedReader(new InputStreamReader(path, Charset.forName("UTF-8")));
+//            //skipping the titles
+//            br.readLine();
+//            while((line = br.readLine()) != null){
+//                String[] parser = line.split(",");
+//                names.add(parser[0]);
+//                descp.add(parser[1]);
+//                date.add(parser[3]);
+//            }
+//        } catch (FileNotFoundException e) {
+//            e.printStackTrace();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//        for (int i = 0; i < names.size(); i++) {
+//            System.out.println("Name: " + names.get(i));
+//            System.out.println("description: " + descp.get(i));
+//            System.out.println("date: " +date.get(i));
+//        }
 
     }
 
@@ -209,10 +280,10 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void setEventAdpater()
-    {
-        ArrayList<Event> dailyEvents = Event.eventsForDate(CalendarUtils.selectedDate);
-        EventAdapter eventAdapter = new EventAdapter(getApplicationContext(), dailyEvents);
-        listView.setAdapter(eventAdapter);
-    }
+//    private void setEventAdpater()
+//    {
+//        ArrayList<Event> dailyEvents = Event.eventsForDate(CalendarUtils.selectedDate);
+//        EventAdapter eventAdapter = new EventAdapter(getApplicationContext(), dailyEvents);
+//        listView.setAdapter(eventAdapter);
+//    }
 }

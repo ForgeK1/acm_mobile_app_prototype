@@ -78,14 +78,21 @@
 <!--        android:textSize="35sp"-->
 <!--        android:typeface="serif" />-->
 
-    <ListView
-        android:id="@+id/eventListView"
-        android:layout_width="360sp"
-        android:layout_height="180sp"
-        android:layout_gravity="center_horizontal"
-        android:layout_weight="5"
-        android:background="@drawable/bg_header" />
-<!--        android:onClick="saveEventAction"-->
+<!--    <ListView-->
+<!--        android:id="@+id/eventListView"-->
+<!--        android:layout_width="360sp"-->
+<!--        android:layout_height="180sp"-->
+<!--        android:layout_gravity="center_horizontal"-->
+<!--        android:layout_weight="5"-->
+<!--        android:background="@drawable/bg_header" />-->
+<!--&lt;!&ndash;        android:onClick="saveEventAction"&ndash;&gt;-->
+
+    <!--Recycler view for displaying
+        our data from Firestore-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/eventRecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
     <Button
         android:id="@+id/new_event"
