@@ -87,5 +87,6 @@ public class EventActivity extends AppCompatActivity
 
     /*Add a functionality where when we click the save button, the page transitions
     back to the Calendar Activity*/
+        finish();
     }
 }
