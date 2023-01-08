@@ -193,31 +193,31 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void parseCSVFile(){
-//        InputStream path = getResources().openRawResource(R.raw.eventdatabases);
-//        String line = "";
-//        ArrayList<String> names = new ArrayList<>();
-//        ArrayList<String> descp = new ArrayList<>();
-//        ArrayList<String> date = new ArrayList<>();
-//        try {
-//            BufferedReader br = new BufferedReader(new InputStreamReader(path, Charset.forName("UTF-8")));
-//            //skipping the titles
-//            br.readLine();
-//            while((line = br.readLine()) != null){
-//                String[] parser = line.split(",");
-//                names.add(parser[0]);
-//                descp.add(parser[1]);
-//                date.add(parser[3]);
-//            }
-//        } catch (FileNotFoundException e) {
-//            e.printStackTrace();
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        for (int i = 0; i < names.size(); i++) {
-//            System.out.println("Name: " + names.get(i));
-//            System.out.println("description: " + descp.get(i));
-//            System.out.println("date: " +date.get(i));
-//        }
+        InputStream path = getResources().openRawResource(R.raw.eventdatabases);
+        String line = "";
+        ArrayList<String> names = new ArrayList<>();
+        ArrayList<String> descp = new ArrayList<>();
+        ArrayList<String> date = new ArrayList<>();
+        try {
+            BufferedReader br = new BufferedReader(new InputStreamReader(path, Charset.forName("UTF-8")));
+            //skipping the titles
+            br.readLine();
+            while((line = br.readLine()) != null){
+                String[] parser = line.split(",");
+                names.add(parser[0]);
+                descp.add(parser[1]);
+                date.add(parser[3]);
+            }
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        for (int i = 0; i < names.size(); i++) {
+            System.out.println("Name: " + names.get(i));
+            System.out.println("description: " + descp.get(i));
+            System.out.println("date: " +date.get(i));
+        }
 
     }
 

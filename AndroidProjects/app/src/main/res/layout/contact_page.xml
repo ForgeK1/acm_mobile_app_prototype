@@ -6,16 +6,16 @@
     android:layout_height="match_parent"
     android:background="@color/Navy">
 
-    <EditText
-        android:id="@+id/editTextTextPersonName2"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:ems="10"
-        android:inputType="textPersonName"
+        android:layout_marginTop="60dp"
         android:text="Contact"
         android:textAlignment="center"
-        android:textColor="@android:color/white"
+        android:textColor="#FFFFFF"
+        android:textSize="23sp"
+        android:textStyle="bold"
+        android:typeface="serif"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,33 +24,40 @@
         android:id="@+id/fbButton"
         android:layout_width="158dp"
         android:layout_height="141dp"
-        android:layout_marginStart="52dp"
+        android:layout_marginStart="212dp"
+        android:layout_marginTop="304dp"
         android:text="Facebook"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="155dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/discordButton"
         android:layout_width="158dp"
         android:layout_height="141dp"
-        android:layout_marginBottom="408dp"
+        android:layout_marginTop="304dp"
+        android:layout_marginEnd="216dp"
         android:text="Discord"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.537"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/fbButton"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/igButton"
         android:layout_width="158dp"
         android:layout_height="141dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="48dp"
+        android:layout_marginStart="212dp"
+        android:layout_marginTop="120dp"
         android:text="Instagram"
-        app:layout_constraintBottom_toTopOf="@+id/discordButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/webButton"
+        android:layout_width="158dp"
+        android:layout_height="141dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginEnd="216dp"
+        android:text="Website"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.684"
-        app:layout_constraintStart_toEndOf="@+id/fbButton" />
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

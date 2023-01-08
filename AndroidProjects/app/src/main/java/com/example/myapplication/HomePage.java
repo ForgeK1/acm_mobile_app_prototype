@@ -17,6 +17,7 @@ public class HomePage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_page);
         calButton = (Button) findViewById(R.id.calButton);
+        contButton = (Button) findViewById(R.id.contButton);
         calButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -24,11 +25,10 @@ public class HomePage extends AppCompatActivity {
             }
         });
 
-        contButton = (Button) findViewById(R.id.contButton);
         contButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //startActivity(new Intent(getApplicationContext(), CalendarUtils.class));
+                startActivity(new Intent(getApplicationContext(), SecondActivity.class));
             }
         });
 

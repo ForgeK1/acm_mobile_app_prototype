@@ -8,9 +8,10 @@
 
     <Button
         android:id="@+id/calButton"
-        android:layout_width="312dp"
-        android:layout_height="119dp"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
         android:layout_marginTop="136dp"
+        android:background="@drawable/bg_btn"
         android:onClick="onClick"
         android:text="Calendar"
         app:layout_constraintEnd_toEndOf="parent"
@@ -20,9 +21,10 @@
 
     <Button
         android:id="@+id/contButton"
-        android:layout_width="312dp"
-        android:layout_height="102dp"
+        android:layout_width="300dp"
+        android:layout_height="100dp"
         android:layout_marginTop="20dp"
+        android:background="@drawable/bg_btn"
         android:onClick="onClick"
         android:text="contact"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -32,18 +34,18 @@
         app:layout_constraintTop_toBottomOf="@+id/calButton"
         app:layout_constraintVertical_bias="0.0" />
 
-    <EditText
-        android:id="@+id/editTextTextPersonName"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:fontFamily="sans-serif-light"
-        android:inputType="textPersonName"
+        android:layout_marginTop="48dp"
         android:text="Main Menu"
         android:textAlignment="center"
-        android:textAllCaps="false"
         android:textColor="#FFFFFF"
-        tools:layout_editor_absoluteX="101dp"
-        tools:layout_editor_absoluteY="48dp" />
+        android:textSize="23sp"
+        android:textStyle="bold"
+        android:typeface="serif"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 
