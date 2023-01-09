@@ -122,9 +122,10 @@ public class MainActivity extends AppCompatActivity {
                 Context context = getApplicationContext();
                 Log.d("calendar date", dateClicked.toString());
                 // *
-                // db.collection("events").whereEqualsTo("Data",dateClicked).get()
+                // db.collection("events").whereEqualTo("Date",dateClicked).get()
                 // *//
                 db.collection("events")
+//                        .whereEqualTo("Date",dateClicked)
                         .get()
                         .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                             @Override
@@ -136,9 +137,12 @@ public class MainActivity extends AppCompatActivity {
                                     // if the snapshot is not empty we are
                                     // hiding our progress bar and adding
                                     // our data in a list.
-
+                                    if(!calendarEventArrayList.isEmpty()) {
+                                        calendarEventArrayList.clear();
+                                    }
                                     List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
                                     for (DocumentSnapshot d : list) {
+
                                         // after getting this list we are passing
                                         // that list to our object class.
 
@@ -146,15 +150,22 @@ public class MainActivity extends AppCompatActivity {
                                         // and we will pass this object class
                                         // inside our arraylist which we have
                                         // created for recycler view.
-                                        calendarEventArrayList.add(c);
+                                        if (calendarEventArrayList.isEmpty()){
+                                            calendarEventArrayList.add(c);
+                                        }
+
+                                        System.out.println("adding to the event list!");
                                     }
                                     // after adding the data to recycler view.
                                     // we are calling recycler view notifyDataSetChanged
                                     // method to notify that data has been changed in recycler view.
                                     calendarEventAdapter.notifyDataSetChanged();
+
                                 } else {
                                     // if the snapshot is empty we are displaying a toast message.
                                     Toast.makeText(MainActivity.this, "No data found in Database", Toast.LENGTH_SHORT).show();
+                                    System.out.println("clearing the event list!");
+
                                 }
                             }
                         }).addOnFailureListener(new OnFailureListener() {
