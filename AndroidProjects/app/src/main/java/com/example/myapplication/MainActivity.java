@@ -124,8 +124,18 @@ public class MainActivity extends AppCompatActivity {
                 // *
                 // db.collection("events").whereEqualTo("Date",dateClicked).get()
                 // *//
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("mm DD YYYY");
+                String date = simpleDateFormat.format(dateClicked);
+                Date clickedDate = null;
+                try {
+                    clickedDate= simpleDateFormat.parse(date);
+                    Toast.makeText(MainActivity.this, date, Toast.LENGTH_SHORT).show();
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
                 db.collection("events")
-//                        .whereEqualTo("Date",dateClicked)
+                        .whereEqualTo("Date", date)
                         .get()
                         .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                             @Override
@@ -150,9 +160,8 @@ public class MainActivity extends AppCompatActivity {
                                         // and we will pass this object class
                                         // inside our arraylist which we have
                                         // created for recycler view.
-                                        if (calendarEventArrayList.isEmpty()){
-                                            calendarEventArrayList.add(c);
-                                        }
+                                        calendarEventArrayList.add(c);
+
 
                                         System.out.println("adding to the event list!");
                                     }
@@ -164,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
                                 } else {
                                     // if the snapshot is empty we are displaying a toast message.
                                     Toast.makeText(MainActivity.this, "No data found in Database", Toast.LENGTH_SHORT).show();
-                                    System.out.println("clearing the event list!");
+
 
                                 }
                             }
