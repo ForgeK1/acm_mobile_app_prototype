@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/Navy"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    tools:ignore="ExtraText">
 
     <!-- Add TextView to display the date -->
 
@@ -25,8 +26,8 @@
         android:typeface="serif" />
 
     <GridLayout
-        android:layout_width="320dp"
-        android:layout_height="280dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/text"
         android:layout_marginTop="20dp"
         android:columnCount="2"
@@ -37,27 +38,32 @@
             android:id="@+id/igButton"
             android:layout_width="160dp"
             android:layout_height="140dp"
-            android:text="Instagram"></Button>
+            android:text="Instagram"
+            android:drawableTop="@drawable/instagram"
+            />
 
         <Button
             android:id="@+id/discordButton"
             android:layout_width="160dp"
             android:layout_height="140dp"
-            android:text="Discord"></Button>
+            android:text="Discord"
+            android:drawableTop="@drawable/discord"/>
 
         <Button
             android:id="@+id/webButton"
             android:layout_width="160dp"
             android:layout_height="140dp"
-            android:text="Website"></Button>
+            android:text="Website"
+            android:drawableTop="@drawable/web"/>
 
         <Button
             android:id="@+id/fbButton"
             android:layout_width="160dp"
             android:layout_height="140dp"
-            android:text="Facebook"></Button>
+            android:text="Facebook"
+            android:drawableTop="@drawable/facebook"/>
 
 
-    </GridLayout>>
+    </GridLayout>
 
 </RelativeLayout>
