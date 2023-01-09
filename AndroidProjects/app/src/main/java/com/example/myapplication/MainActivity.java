@@ -124,8 +124,9 @@ public class MainActivity extends AppCompatActivity {
                 // *
                 // db.collection("events").whereEqualTo("Date",dateClicked).get()
                 // *//
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("mm DD YYYY");
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMM dd, yyyy");
                 String date = simpleDateFormat.format(dateClicked);
+
                 Date clickedDate = null;
                 try {
                     clickedDate= simpleDateFormat.parse(date);
