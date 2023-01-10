@@ -5,6 +5,7 @@ import android.os.Build;
 import androidx.annotation.RequiresApi;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -20,8 +21,9 @@ public class CalendarUtils
 
     public static String formattedDate(LocalDate date)
     {
+        SimpleDateFormat sdf = new SimpleDateFormat("MMM d yyyy");
         Date currentTime = Calendar.getInstance().getTime();
-        String formatteddate = DateFormat.getDateInstance().format(currentTime);
+        String formatteddate = sdf.format(currentTime);
         return formatteddate;
     }
 

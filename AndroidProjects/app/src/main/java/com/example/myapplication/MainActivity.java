@@ -124,16 +124,16 @@ public class MainActivity extends AppCompatActivity {
                 // *
                 // db.collection("events").whereEqualTo("Date",dateClicked).get()
                 // *//
-                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMM dd, yyyy");
+                SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMM d yyyy");
                 String date = simpleDateFormat.format(dateClicked);
+                Toast.makeText(MainActivity.this, date, Toast.LENGTH_SHORT).show();
 
-                Date clickedDate = null;
-                try {
-                    clickedDate= simpleDateFormat.parse(date);
-                    Toast.makeText(MainActivity.this, date, Toast.LENGTH_SHORT).show();
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
+//                Date clickedDate = null;
+//                try {
+//                    clickedDate= simpleDateFormat.parse(date);
+//                } catch (ParseException e) {
+//                    e.printStackTrace();
+//                }
 
                 db.collection("events")
                         .whereEqualTo("Date", date)
@@ -148,9 +148,8 @@ public class MainActivity extends AppCompatActivity {
                                     // if the snapshot is not empty we are
                                     // hiding our progress bar and adding
                                     // our data in a list.
-                                    if(!calendarEventArrayList.isEmpty()) {
-                                        calendarEventArrayList.clear();
-                                    }
+                                    calendarEventArrayList.clear();
+
                                     List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
                                     for (DocumentSnapshot d : list) {
 
@@ -174,7 +173,6 @@ public class MainActivity extends AppCompatActivity {
                                 } else {
                                     // if the snapshot is empty we are displaying a toast message.
                                     Toast.makeText(MainActivity.this, "No data found in Database", Toast.LENGTH_SHORT).show();
-
 
                                 }
                             }
