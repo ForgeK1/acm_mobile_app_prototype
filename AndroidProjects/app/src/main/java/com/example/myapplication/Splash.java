@@ -13,7 +13,7 @@ import android.widget.ImageView;
 
 public class Splash extends AppCompatActivity {
 
-    private static int SPLASH_SCREEN_TIMEOUT = 3000;
+    private static int SPLASH_SCREEN_TIMEOUT = 2500;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
