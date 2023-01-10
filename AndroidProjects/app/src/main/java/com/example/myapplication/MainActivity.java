@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
                 // *//
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMM d yyyy");
                 String date = simpleDateFormat.format(dateClicked);
-                Toast.makeText(MainActivity.this, date, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity.this, date, Toast.LENGTH_SHORT).show();
 
 //                Date clickedDate = null;
 //                try {
@@ -172,6 +172,7 @@ public class MainActivity extends AppCompatActivity {
 
                                 } else {
                                     // if the snapshot is empty we are displaying a toast message.
+                                    calendarEventArrayList.clear();
                                     Toast.makeText(MainActivity.this, "No data found in Database", Toast.LENGTH_SHORT).show();
 
                                 }
