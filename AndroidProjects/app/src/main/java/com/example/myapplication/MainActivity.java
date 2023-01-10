@@ -126,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
                 // *//
                 SimpleDateFormat simpleDateFormat = new SimpleDateFormat("MMM d yyyy");
                 String date = simpleDateFormat.format(dateClicked);
-                Toast.makeText(MainActivity.this, date, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(MainActivity.this, date, Toast.LENGTH_SHORT).show();
 
 //                Date clickedDate = null;
 //                try {

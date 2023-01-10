@@ -21,9 +21,9 @@
         android:text="Contact"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
-        android:textSize="23sp"
+        android:textSize="50sp"
         android:textStyle="bold"
-        android:typeface="serif" />
+        android:fontFamily="sans-serif" />
 
     <GridLayout
         android:layout_width="wrap_content"
@@ -36,32 +36,36 @@
 
         <Button
             android:id="@+id/igButton"
-            android:layout_width="160dp"
-            android:layout_height="140dp"
+            android:layout_width="180dp"
+            android:layout_height="160dp"
             android:text="Instagram"
             android:drawableTop="@drawable/instagram"
+            android:textSize="20sp"
             />
 
         <Button
             android:id="@+id/discordButton"
-            android:layout_width="160dp"
-            android:layout_height="140dp"
+            android:layout_width="180dp"
+            android:layout_height="160dp"
             android:text="Discord"
-            android:drawableTop="@drawable/discord"/>
+            android:drawableTop="@drawable/discord"
+            android:textSize="20sp"/>
 
         <Button
             android:id="@+id/webButton"
-            android:layout_width="160dp"
-            android:layout_height="140dp"
+            android:layout_width="180dp"
+            android:layout_height="160dp"
             android:text="Website"
-            android:drawableTop="@drawable/web"/>
+            android:drawableTop="@drawable/web"
+            android:textSize="20sp"/>
 
         <Button
             android:id="@+id/fbButton"
-            android:layout_width="160dp"
-            android:layout_height="140dp"
+            android:layout_width="180dp"
+            android:layout_height="160dp"
             android:text="Facebook"
-            android:drawableTop="@drawable/facebook"/>
+            android:drawableTop="@drawable/facebook"
+            android:textSize="20sp"/>
 
 
     </GridLayout>
