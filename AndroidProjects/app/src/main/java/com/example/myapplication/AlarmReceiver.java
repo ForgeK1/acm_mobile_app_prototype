@@ -5,68 +5,46 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.nfc.Tag;
+import android.util.Log;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.tabs.TabLayout;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
-public class AlarmReceiver extends BroadcastReceiver {
+public class AlarmReceiver<DatabaseReference> extends BroadcastReceiver {
 
     String title;
     String body;
+    private FirebaseFirestore db;
+    private DatabaseReference mDatabase;
     @Override
     public void onReceive(Context context, Intent intent) {
-        Date date2 = null;
-        Date current = null;
-
+        db = FirebaseFirestore.getInstance();
 
         //checks if today a event is scheduled
-        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("MMM d yyyy");
         String date = sdf.format(Calendar.getInstance().getTime());
+        db.collection("events")
+                .whereEqualTo("Date", date)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
-        Date genMeeting1 = null;
-        try {
-            genMeeting1 = sdf.parse("01/05/2023");
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        Date gameNight = null;
-        try {
-            gameNight = sdf.parse("01/04/2023");
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+                    }
+                });
 
-        try {
-            //current = sdf.parse("01/04/2023");
-            current = sdf.parse(date);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        try {
-            date2 = sdf.parse("01/06/2023");
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        if (current.equals(date2)) {
-            title = "Hello";
-            body = "Good day there";
-        } else if (current.equals(genMeeting1)) {
-            title = "General Meeting";
-            body = "Meeting today at 3:00 Room 350";
-        } else if (current.equals(gameNight)) {
-            title = "Game Night";
-            body = "Come to room ET:345 at 3:00 for some fun games with fellow ACM members with some awesome prizes";
-        } else {
-            title = "Goodbye";
-            body = "Goodnight";
-        }
 
         Intent i = new Intent(context, SecondActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -84,7 +62,6 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         NotificationManagerCompat notificationManagerCompat = NotificationManagerCompat.from(context);
         notificationManagerCompat.notify(123, builder.build());
-
 
     }
 }

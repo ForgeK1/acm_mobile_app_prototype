@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
 
         try {
             //needs to be in a 24 hour format
-            checkTodaysDate(16,57);
+            checkTodaysDate(12,00);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -116,6 +116,7 @@ public class MainActivity extends AppCompatActivity {
 //        compactCalendar.addEvent(ev3);
 //        compactCalendar.addEvent(ev4);
 //        setEventAdpater();
+
         compactCalendar.setListener(new CompactCalendarView.CompactCalendarViewListener() {
             @Override
             public void onDayClick(Date dateClicked) {
@@ -170,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
                                     // method to notify that data has been changed in recycler view.
                                     calendarEventAdapter.notifyDataSetChanged();
 
-                                } else {
+                                } else{
                                     // if the snapshot is empty we are displaying a toast message.
                                     calendarEventArrayList.clear();
                                     Toast.makeText(MainActivity.this, "No data found in Database", Toast.LENGTH_SHORT).show();
@@ -257,7 +258,7 @@ public class MainActivity extends AppCompatActivity {
     }
     //needs to be in 24 format
     private void checkTodaysDate(int hour,int min) throws ParseException {
-        SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("MMM d yyyy");
         String date = sdf.format(Calendar.getInstance().getTime());
         Date current = sdf.parse(date);
         Date date2 = sdf.parse("01/03/2023");
