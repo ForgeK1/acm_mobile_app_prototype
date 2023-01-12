@@ -30,9 +30,8 @@ public class CalendarUtils
     public static String formattedTime(LocalTime time)
     {
         DateTimeFormatter formatter = null;
-        formatter = DateTimeFormatter.ofPattern("hh:mm:ss a");
+        formatter = DateTimeFormatter.ofPattern("hh:mm a");
         return time.format(formatter);
-
     }
 
     public static String monthYearFromDate(LocalDate date)

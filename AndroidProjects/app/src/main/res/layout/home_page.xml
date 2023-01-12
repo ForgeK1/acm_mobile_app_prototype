@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/Navy">
+    android:background="@color/Navy"
+    >
 
     <Button
         android:id="@+id/calButton"
@@ -39,17 +40,27 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
+        android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="48dp"
+        android:fontFamily="sans-serif"
         android:text="Main Menu"
         android:textAlignment="center"
         android:textColor="#FFFFFF"
         android:textSize="50sp"
         android:textStyle="bold"
-        android:fontFamily="sans-serif"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:layout_width="670dp"
+        android:layout_height="500dp"
+        android:src="@mipmap/plz"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/contButton" />
 </androidx.constraintlayout.widget.ConstraintLayout>
 

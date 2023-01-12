@@ -6,6 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.motion.widget.Debug;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -38,6 +40,7 @@ import java.io.InputStreamReader;
 import java.nio.charset.Charset;
 import java.text.SimpleDateFormat;
 import java.time.format.DateTimeFormatter;
+import java.time.temporal.TemporalAccessor;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -72,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<CalendarEvent> calendarEventArrayList;
     private CalendarEventAdapter calendarEventAdapter;
     private FirebaseFirestore db;
+    private String eventDate;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -81,8 +85,8 @@ public class MainActivity extends AppCompatActivity {
         createNotificationChannel();
 
         try {
-            //needs to be in a 24 hour format
-            checkTodaysDate(12,00);
+//            checkTodaysDate(4,05);
+            checkTodaysDate(0,00);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -162,6 +166,7 @@ public class MainActivity extends AppCompatActivity {
                                         // inside our arraylist which we have
                                         // created for recycler view.
                                         calendarEventArrayList.add(c);
+
 
 
                                         System.out.println("adding to the event list!");
@@ -244,7 +249,6 @@ public class MainActivity extends AppCompatActivity {
 
     private void createNotificationChannel() {
 
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O){
             CharSequence name = "ACMReminderChannel";
             String description = "Channel For Alarm Manager";
             int importance = NotificationManager.IMPORTANCE_HIGH;
@@ -254,28 +258,64 @@ public class MainActivity extends AppCompatActivity {
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
             notificationManager.createNotificationChannel(channel);
 
-//        }
     }
     //needs to be in 24 format
-    private void checkTodaysDate(int hour,int min) throws ParseException {
+    private void checkTodaysDate(int hour, int min) throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("MMM d yyyy");
-        String date = sdf.format(Calendar.getInstance().getTime());
-        Date current = sdf.parse(date);
-        Date date2 = sdf.parse("01/03/2023");
+        String today = sdf.format(Calendar.getInstance().getTime());
 
-        if (current.equals(date2)) {
-            setTime(hour,min);
-        }
+        FirebaseFirestore Notifs = FirebaseFirestore.getInstance();
+        Notifs.collection("events")
+                .whereEqualTo("Date", today)
+                .get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        if (!queryDocumentSnapshots.isEmpty()) {
+                            List<DocumentSnapshot> list = queryDocumentSnapshots.getDocuments();
+                            for (DocumentSnapshot d : list) {
+                                    setTime(hour,min);
+                            }
+                        } else{
+                            // if the snapshot is empty we are displaying a toast message.
+                            Toast.makeText(MainActivity.this, "Yo", Toast.LENGTH_SHORT).show();
+
+                        }
+                    }
+                });
     }
 
 
-    private void setTime(int hour, int min){
-        Calendar c= Calendar.getInstance();
-        c.set(Calendar.HOUR_OF_DAY,hour);
-        c.set(Calendar.MINUTE,min);
+    private void setTime(int hour, int min) {
+        SimpleDateFormat sdf = new SimpleDateFormat("h:mm a");
+        String currentTime = sdf.format(Calendar.getInstance().getTime());
 
+        Calendar c = Calendar.getInstance();
+        c.set(Calendar.HOUR, hour);
+        c.set(Calendar.MINUTE, min);
+
+        Calendar three = Calendar.getInstance();
+        three.set(Calendar.HOUR, 3);
+
+        Date current = null;
+        try {
+            current = new SimpleDateFormat("h:mm a").parse(currentTime);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        Date pastThree = null;
+        try {
+            pastThree = new SimpleDateFormat("h:mm a").parse(String.valueOf(three));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
+        //uncomment this later
+//        if (!current.after(pastThree)) {
+//            setAlarm(c);
+//        }
         setAlarm(c);
-
     }
 
     private void setAlarm(Calendar c) {
