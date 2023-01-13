@@ -55,9 +55,9 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:layout_width="670dp"
-        android:layout_height="500dp"
-        android:src="@mipmap/plz"
+        android:layout_width="544dp"
+        android:layout_height="423dp"
+        android:src="@mipmap/logo_foreground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
