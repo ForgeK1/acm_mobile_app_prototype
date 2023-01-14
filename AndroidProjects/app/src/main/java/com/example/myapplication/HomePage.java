@@ -15,6 +15,9 @@ public class HomePage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
         setContentView(R.layout.home_page);
         calButton = (Button) findViewById(R.id.calButton);
         contButton = (Button) findViewById(R.id.contButton);

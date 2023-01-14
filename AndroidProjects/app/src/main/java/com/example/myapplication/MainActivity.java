@@ -179,7 +179,7 @@ public class MainActivity extends AppCompatActivity {
                                 } else{
                                     // if the snapshot is empty we are displaying a toast message.
                                     calendarEventArrayList.clear();
-                                    Toast.makeText(MainActivity.this, "No data found in Database", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(MainActivity.this, "Nothing planned today", Toast.LENGTH_SHORT).show();
 
                                 }
                             }
@@ -278,7 +278,7 @@ public class MainActivity extends AppCompatActivity {
                             }
                         } else{
                             // if the snapshot is empty we are displaying a toast message.
-                            Toast.makeText(MainActivity.this, "Yo", Toast.LENGTH_SHORT).show();
+                            //Toast.makeText(MainActivity.this, "Yo", Toast.LENGTH_SHORT).show();
 
                         }
                     }

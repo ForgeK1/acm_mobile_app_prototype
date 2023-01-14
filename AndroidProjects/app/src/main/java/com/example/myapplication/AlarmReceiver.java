@@ -65,7 +65,7 @@ public class AlarmReceiver<DatabaseReference> extends BroadcastReceiver {
                                 body = c.getDescription();
 
                                 NotificationCompat.Builder builder = new NotificationCompat.Builder(context, "ACM")
-                                        .setSmallIcon(R.drawable.ic_party)
+                                        .setSmallIcon(R.drawable.acm_logo)
                                         .setContentTitle(title)
                                         .setContentText(body)
                                         .setAutoCancel(true)

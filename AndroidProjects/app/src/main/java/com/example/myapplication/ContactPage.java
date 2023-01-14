@@ -18,6 +18,9 @@ public class ContactPage extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().hide();
+        }
         setContentView(R.layout.contact_page);
         fbButton = (Button) findViewById(R.id.fbButton);
         igButton = (Button) findViewById(R.id.igButton);

@@ -21,6 +21,11 @@
     </style>
 
     <style name="main" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">#FFFF</item>
+        <item name="colorPrimaryDark">@color/litePurple</item>
+        <item name="colorOnPrimary">@color/Navy</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor">#000000</item>
     </style>
 
 
