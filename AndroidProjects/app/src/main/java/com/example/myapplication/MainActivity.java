@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
 
         try {
 //            checkTodaysDate(4,05);
-            checkTodaysDate(0,00);
+            checkTodaysDate(1,52);
         } catch (ParseException e) {
             e.printStackTrace();
         }
