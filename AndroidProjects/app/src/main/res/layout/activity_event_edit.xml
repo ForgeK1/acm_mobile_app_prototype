@@ -84,14 +84,14 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/eventNameET" />
 
-    <EditText
+    <TextView
         android:id="@+id/eventTimeET"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_marginTop="16dp"
         android:background="@drawable/bg_event"
         android:ems="10"
-        android:inputType="text"
+        android:onClick="timePicker"
         android:text=""
         android:drawableLeft="@drawable/ic_baseline_access_time_24"
         android:drawablePadding="10dp"
