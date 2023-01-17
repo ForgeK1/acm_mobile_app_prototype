@@ -178,7 +178,7 @@ public class MainActivity extends AppCompatActivity {
 
                                 } else{
                                     // if the snapshot is empty we are displaying a toast message.
-                                    calendarEventArrayList.clear();
+                                    calendarEventAdapter.recyclerClear();
                                     Toast.makeText(MainActivity.this, "Nothing planned today", Toast.LENGTH_SHORT).show();
 
                                 }
@@ -216,6 +216,8 @@ public class MainActivity extends AppCompatActivity {
                 openEventActivity();
             }
         });
+
+
     }
 
     private void parseCSVFile(){

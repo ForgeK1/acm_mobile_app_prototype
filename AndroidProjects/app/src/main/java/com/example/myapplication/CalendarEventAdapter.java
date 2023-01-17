@@ -38,6 +38,12 @@ public class CalendarEventAdapter extends RecyclerView.Adapter<CalendarEventAdap
         holder.eventDateTV.setText(calendarEvent.getDate());
     }
 
+    public void recyclerClear(){
+        int size = eventArrayList.size();
+        eventArrayList.clear();
+        notifyItemRangeRemoved(0,size);
+    }
+
     @Override
     public int getItemCount() {
         // returning the size of our array list.
