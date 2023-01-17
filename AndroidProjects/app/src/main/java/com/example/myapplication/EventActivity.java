@@ -31,8 +31,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -64,40 +67,37 @@ public class EventActivity extends AppCompatActivity
     }
 
     public void timePicker(View v) {
-        Toast.makeText(this, "Time Picker Works", Toast.LENGTH_SHORT).show();
         View pickTimeBtn = null;
-                final Calendar c = Calendar.getInstance();
+        final Calendar c = Calendar.getInstance();
 
-                // on below line we are getting our hour, minute.
-                int hour = c.get(Calendar.HOUR);
-                int minute = c.get(Calendar.MINUTE);
-                int timezoneInInt = c.get(Calendar.AM);
+        // on below line we are getting our hour, minute.
+        int hour = c.get(Calendar.HOUR);
+        int minute = c.get(Calendar.MINUTE);
 
-                // on below line we are initializing our Time Picker Dialog
-                TimePickerDialog timePickerDialog = new TimePickerDialog(EventActivity.this,
-                        new TimePickerDialog.OnTimeSetListener() {
-                            @Override
-                            public void onTimeSet(TimePicker view, int hourOfDay,
-                                                  int minute) {
-                                String timezoneInString = null;
+        // on below line we are initializing our Time Picker Dialog
+        TimePickerDialog timePickerDialog = new TimePickerDialog(EventActivity.this,
+                new TimePickerDialog.OnTimeSetListener() {
+                    @Override
+                    public void onTimeSet(TimePicker view, int hourOfDay,
+                                          int minute) {
+                        SimpleDateFormat sdf = new SimpleDateFormat("hh:mm a");
 
-                                if(timezoneInInt == 0){
-                                    timezoneInString = "AM";
-                                }
-                                else{
-                                    timezoneInString = "PM";
-                                }
+                        Calendar cal = Calendar.getInstance();
+                        cal.set(Calendar.HOUR_OF_DAY, hourOfDay);
+                        cal.set(Calendar.MINUTE, minute);
+                        Date date = cal.getTime();
+                        String time = sdf.format(date);
 
-                                // on below line we are setting selected time
-                                // in our text view.
-                                eventTimeTV.setText(hourOfDay + ":" + minute + " " + timezoneInString);
+                        // on below line we are setting selected time
+                        // in our text view.
+                        eventTimeTV.setText(time);
 
-                            }
-                        }, hour, minute, false);
-                // at last we are calling show to
-                // display our time picker dialog.
-                timePickerDialog.show();
-            };
+                    }
+                }, hour, minute, false);
+        // at last we are calling show to
+        // display our time picker dialog.
+        timePickerDialog.show();
+    };
 
     public void saveEventAction(View view)
     {

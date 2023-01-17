@@ -93,6 +93,7 @@
         android:ems="10"
         android:onClick="timePicker"
         android:text=""
+        android:gravity="center_vertical"
         android:drawableLeft="@drawable/ic_baseline_access_time_24"
         android:drawablePadding="10dp"
         android:paddingLeft="10dp"

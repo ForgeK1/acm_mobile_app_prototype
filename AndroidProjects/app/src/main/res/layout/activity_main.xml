@@ -95,7 +95,8 @@
         android:layout_width="380dp"
         android:layout_height="285dp"
         android:background="@drawable/bg"
-        android:layout_gravity="center" />
+        android:layout_gravity="center"
+        android:onClick="eventView"/>
 
     <Button
         android:id="@+id/new_event"
