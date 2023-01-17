@@ -63,53 +63,41 @@ public class EventActivity extends AppCompatActivity
         eventDescET = findViewById(R.id.eventDescriptionET);
     }
 
-    private void timePicker() {
+    public void timePicker(View v) {
+        Toast.makeText(this, "Time Picker Works", Toast.LENGTH_SHORT).show();
         View pickTimeBtn = null;
+                final Calendar c = Calendar.getInstance();
 
-        // on below line we are adding click
-        // listener for our pick date button
-        pickTimeBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(EventActivity.this, "Test", Toast.LENGTH_SHORT).show();
+                // on below line we are getting our hour, minute.
+                int hour = c.get(Calendar.HOUR);
+                int minute = c.get(Calendar.MINUTE);
+                int timezoneInInt = c.get(Calendar.AM);
 
-//                // on below line we are getting the
-//                // instance of our calendar.
-//                final Calendar c = Calendar.getInstance();
-//
-//                // on below line we are getting our hour, minute.
-//                int hour = c.get(Calendar.HOUR_OF_DAY);
-//                int minute = c.get(Calendar.MINUTE);
-//                int timezoneInInt = c.get(Calendar.AM);
-//
-//                // on below line we are initializing our Time Picker Dialog
-//                TimePickerDialog timePickerDialog = new TimePickerDialog(EventActivity.this,
-//                        new TimePickerDialog.OnTimeSetListener() {
-//                            @Override
-//                            public void onTimeSet(TimePicker view, int hourOfDay,
-//                                                  int minute) {
-//                                String timezoneInString = null;
-//
-//                                if(timezoneInInt == 0){
-//                                    timezoneInString = "AM";
-//                                }
-//                                else{
-//                                    timezoneInString = "PM";
-//                                }
-//
-//                                // on below line we are setting selected time
-//                                // in our text view.
-//                                eventTimeTV.setText(hourOfDay + ":" + minute + " " + timezoneInString);
-//
-//
-//                            }
-//                        }, hour, minute, false);
-//                // at last we are calling show to
-//                // display our time picker dialog.
-//                timePickerDialog.show();
-            }
-        });
-    }
+                // on below line we are initializing our Time Picker Dialog
+                TimePickerDialog timePickerDialog = new TimePickerDialog(EventActivity.this,
+                        new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker view, int hourOfDay,
+                                                  int minute) {
+                                String timezoneInString = null;
+
+                                if(timezoneInInt == 0){
+                                    timezoneInString = "AM";
+                                }
+                                else{
+                                    timezoneInString = "PM";
+                                }
+
+                                // on below line we are setting selected time
+                                // in our text view.
+                                eventTimeTV.setText(hourOfDay + ":" + minute + " " + timezoneInString);
+
+                            }
+                        }, hour, minute, false);
+                // at last we are calling show to
+                // display our time picker dialog.
+                timePickerDialog.show();
+            };
 
     public void saveEventAction(View view)
     {
