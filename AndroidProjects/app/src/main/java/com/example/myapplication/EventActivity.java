@@ -67,7 +67,7 @@ public class EventActivity extends AppCompatActivity
             eventDescET.setError( "Event Description is required!" );
             //eventDescET.setHint("Event Description is required!");
         }
-        if( !TextUtils.isEmpty(eventNameET.getText()) | !TextUtils.isEmpty(eventDescET.getText()) ){
+        if( !TextUtils.isEmpty(eventNameET.getText()) && !TextUtils.isEmpty(eventDescET.getText()) ){
         String name = eventNameET.getText().toString();
         String eventDesc = eventDescET.getText().toString();
         String eventTime = eventTimeTV.getText().toString();
@@ -97,12 +97,9 @@ public class EventActivity extends AppCompatActivity
                         Log.w("Error", "Error adding document", e);
                     }
                 });
-            Intent i = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(i);
-        }
 
-    /*Add a functionality where when we click the save button, the page transitions
-    back to the Calendar Activity*/
-        //finish();
+            //Redirects user back to main activity
+            finish();
+        }
     }
 }
