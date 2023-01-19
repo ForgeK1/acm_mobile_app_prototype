@@ -6,6 +6,7 @@ public class CalendarEvent {
     String Description;
     String Time;
     String Date;
+    String URL;
 
     public CalendarEvent() {}
 
@@ -47,5 +48,13 @@ public class CalendarEvent {
 
     public void setDate(String Date) {
         this.Date = Date;
+    }
+
+    public String getURL() {
+        return URL;
+    }
+
+    public void setURL(String URL) {
+        this.URL = URL;
     }
 }
