@@ -13,12 +13,14 @@ import java.util.ArrayList;
 public class CalendarEventAdapter extends RecyclerView.Adapter<CalendarEventAdapter.ViewHolder> {
     // creating variables for our ArrayList and context
     private ArrayList<CalendarEvent> eventArrayList;
+    private ItemClickListener mItemListener;
     private Context context;
 
     // creating constructor for our adapter class
-    public CalendarEventAdapter(ArrayList<CalendarEvent> eventArrayList, Context context) {
+    public CalendarEventAdapter(ArrayList<CalendarEvent> eventArrayList, Context context, ItemClickListener itemClickListener) {
         this.eventArrayList = eventArrayList;
         this.context = context;
+        this.mItemListener = itemClickListener;
     }
 
     @NonNull
@@ -36,6 +38,11 @@ public class CalendarEventAdapter extends RecyclerView.Adapter<CalendarEventAdap
         holder.eventDescTV.setText(calendarEvent.getDescription());
         holder.eventTimeTV.setText(calendarEvent.getTime());
         holder.eventDateTV.setText(calendarEvent.getDate());
+
+        holder.itemView.setOnClickListener(view -> {
+            //This will get the size of the array from the recycler view
+            mItemListener.onItemClick(eventArrayList.size());
+        });
     }
 
     public void recyclerClear(){
@@ -49,6 +56,10 @@ public class CalendarEventAdapter extends RecyclerView.Adapter<CalendarEventAdap
         // returning the size of our array list.
         return eventArrayList.size();
     }
+
+    public interface ItemClickListener{
+            void onItemClick(int eventArrayList);
+        }
 
     class ViewHolder extends RecyclerView.ViewHolder {
         // creating variables for our text views.

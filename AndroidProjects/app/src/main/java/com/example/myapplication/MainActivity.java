@@ -22,6 +22,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.telecom.Call;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -56,6 +57,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -98,19 +100,28 @@ public class MainActivity extends AppCompatActivity {
         compactCalendar = (CompactCalendarView) findViewById(R.id.compactcalendar_view);
         compactCalendar.setUseThreeLetterAbbreviation(true);
 
-        // initializing our variables.
+        // initializing our variables for the Calendar
         recyclerView = findViewById(R.id.eventRecyclerView);
         db = FirebaseFirestore.getInstance();
+        FirebaseStorage storage = FirebaseStorage.getInstance();
         calendarEventArrayList = new ArrayList<>();
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        calendarEventAdapter = new CalendarEventAdapter(calendarEventArrayList, this);
-        recyclerView.setAdapter(calendarEventAdapter);
-
         button= (Button)findViewById(R.id.new_event);
         listView = findViewById(R.id.eventListView);
-        //Set an event for Teachers' Professional Day 2016 which is 21st of October
 
+
+
+        calendarEventAdapter = new CalendarEventAdapter(calendarEventArrayList, this, new CalendarEventAdapter.ItemClickListener() {
+            @Override
+            public void onItemClick(int eventArrayList) {
+                Toast.makeText(MainActivity.this, "Item Clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        recyclerView.setAdapter(calendarEventAdapter);
+
+        //Set an event for Teachers' Professional Day 2016 which is 21st of October
 //        Event ev1 = new Event(Color.rgb(84,191,171), 1672036846000L, "Christmas");
 //        Event ev2 = new Event(Color.rgb(84,191,171), 1672563600000L, "New Years");
 //        Event ev3 = new Event(Color.rgb(84,191,171), 1672736400000L, "Martin Luther King’s Birthday");
@@ -167,8 +178,6 @@ public class MainActivity extends AppCompatActivity {
                                         // created for recycler view.
                                         calendarEventArrayList.add(c);
 
-
-
                                         System.out.println("adding to the event list!");
                                     }
                                     // after adding the data to recycler view.
@@ -191,18 +200,7 @@ public class MainActivity extends AppCompatActivity {
                                 Toast.makeText(MainActivity.this, "Fail to get the data.", Toast.LENGTH_SHORT).show();
                             }
                         });
-//                if (dateClicked.toString().compareTo("Sun Dec 25 00:00:00 PST 2022") == 0) {
-//                    ((TextView)findViewById(R.id.textbox_forevents)).setText("Merry Christmas!");
-//                }else if (dateClicked.toString().compareTo("Sun Jan 01 00:00:00 PST 2023") == 0){
-//                    ((TextView)findViewById(R.id.textbox_forevents)).setText("New Years!");
-//                }else if (dateClicked.toString().compareTo("Tue Jan 03 00:00:00 PST 2023") == 0){
-//                    ((TextView)findViewById(R.id.textbox_forevents)).setText("Martin Luther King’s Birthday");
-//                }else if(dateClicked.toString().compareTo("Mon Jan 23 00:00:00 PST 2023") == 0){
-//                    ((TextView)findViewById(R.id.textbox_forevents)).setText("Back To School!");
-//                }else{
-//                    ((TextView)findViewById(R.id.textbox_forevents)).setText("No Events Planned For Today :(");
-//                }
-            }
+                     }
 
             @Override
             public void onMonthScroll(Date firstDayOfNewMonth) {
@@ -216,8 +214,6 @@ public class MainActivity extends AppCompatActivity {
                 openEventActivity();
             }
         });
-
-
     }
 
     private void parseCSVFile(){
@@ -287,7 +283,6 @@ public class MainActivity extends AppCompatActivity {
                 });
     }
 
-
     private void setTime(int hour, int min) {
         SimpleDateFormat sdf = new SimpleDateFormat("h:mm a");
         String currentTime = sdf.format(Calendar.getInstance().getTime());
@@ -337,10 +332,6 @@ public class MainActivity extends AppCompatActivity {
         parseCSVFile();
         Intent intent = new Intent(this, EventActivity.class);
         startActivity(intent);
-    }
-
-    public void openNewActivity(){
-
     }
 
 //    private void setEventAdpater()
