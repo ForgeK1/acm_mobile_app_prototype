@@ -115,7 +115,9 @@ public class MainActivity extends AppCompatActivity {
         calendarEventAdapter = new CalendarEventAdapter(calendarEventArrayList, this, new CalendarEventAdapter.ItemClickListener() {
             @Override
             public void onItemClick(int eventArrayList) {
-                Toast.makeText(MainActivity.this, "Item Clicked", Toast.LENGTH_SHORT).show();
+               // Toast.makeText(MainActivity.this, "Item Clicked", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(MainActivity.this, Flyer.class);
+                startActivity(intent);
             }
         });
 
