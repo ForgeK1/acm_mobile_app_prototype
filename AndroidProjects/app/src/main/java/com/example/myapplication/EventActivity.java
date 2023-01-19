@@ -7,6 +7,7 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -20,6 +21,8 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
@@ -32,7 +35,7 @@ public class EventActivity extends AppCompatActivity
 {
     private EditText eventNameET, eventDescET;
     private TextView eventDateTV, eventTimeTV;
-
+    private static final int PICK_IMAGE_REQUEST = 234;
     private LocalTime time;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -129,14 +132,19 @@ public class EventActivity extends AppCompatActivity
                         Log.w("Error", "Error adding document", e);
                     }
                 });
-
-            //Redirects user back to main activity
-            finish();
         }
+        //Redirects user back to main activity
+        finish();
     }
-
     public void UploadImg(View view){
-
+        //creating instance of the img database
+        FirebaseStorage storage = FirebaseStorage.getInstance("gs://acm-application.appspot.com/");
+        //creating a reference of the storage instance
+        StorageReference storageRef = storage.getReference(); // this pulls up the storage link ("gs://acm-application.appspot.com/")
+        StorageReference flyerRef = storageRef.child("flyers"); // this puts us into the flyers folder in the firebase storage
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
     }
-
 }
