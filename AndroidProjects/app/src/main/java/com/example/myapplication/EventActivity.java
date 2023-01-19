@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -24,6 +25,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
+import java.net.URI;
 import java.text.SimpleDateFormat;
 import java.time.LocalTime;
 import java.util.Calendar;
@@ -36,6 +38,7 @@ public class EventActivity extends AppCompatActivity
     private EditText eventNameET, eventDescET;
     private TextView eventDateTV, eventTimeTV;
     private static final int PICK_IMAGE_REQUEST = 234;
+    private Uri filepath; //uniform resource identifier object we create to make it so can get the unique path of each image uploaded
     private LocalTime time;
 
     @RequiresApi(api = Build.VERSION_CODES.O)
@@ -53,9 +56,18 @@ public class EventActivity extends AppCompatActivity
     private void initWidgets()
     {
         eventNameET = findViewById(R.id.eventNameET);
-        eventDateTV = findViewById(R.id .eventDateET);
+        eventDateTV = findViewById(R.id.eventDateET);
         eventTimeTV = findViewById(R.id.eventTimeET);
         eventDescET = findViewById(R.id.eventDescriptionET);
+    }
+
+    //function to give filepath a value after choosing an img to upload
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK && data != null && data.getData() != null) {
+            filepath = data.getData();
+        }
     }
 
     public void timePicker(View v) {
@@ -93,7 +105,6 @@ public class EventActivity extends AppCompatActivity
 
     public void saveEventAction(View view)
     {
-
         if( TextUtils.isEmpty(eventNameET.getText()) ){
             eventNameET.setError( "Event name is required!" );
             //eventNameET.setHint("Event name is required!");
@@ -142,9 +153,13 @@ public class EventActivity extends AppCompatActivity
         //creating a reference of the storage instance
         StorageReference storageRef = storage.getReference(); // this pulls up the storage link ("gs://acm-application.appspot.com/")
         StorageReference flyerRef = storageRef.child("flyers"); // this puts us into the flyers folder in the firebase storage
+        //creating new intent so we can choose the file we want to upload
         Intent intent = new Intent();
-        intent.setType("image/*");
-        intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+        intent.setType("image/*"); //this sets the type of files that can be uploaded, in our case we can only choose images like jpegs or pngs
+        intent.setAction(Intent.ACTION_GET_CONTENT); // setting the intent to getting content in this case choosing an img
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST); //opens up google drive so we can choose the files we want to upload
+        if (filepath != null){ //
+            System.out.println(filepath.getPath());
+        }
     }
 }
