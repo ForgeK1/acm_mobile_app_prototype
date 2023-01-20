@@ -6,6 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.net.Uri;
@@ -17,6 +19,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -24,6 +27,7 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 import java.net.URI;
 import java.text.SimpleDateFormat;
@@ -158,8 +162,30 @@ public class EventActivity extends AppCompatActivity
         intent.setType("image/*"); //this sets the type of files that can be uploaded, in our case we can only choose images like jpegs or pngs
         intent.setAction(Intent.ACTION_GET_CONTENT); // setting the intent to getting content in this case choosing an img
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST); //opens up google drive so we can choose the files we want to upload
-        if (filepath != null){ //
-            System.out.println(filepath.getPath());
+
+        if (filepath != null){
+            final ProgressDialog progressDialog = new ProgressDialog(this);
+
+            flyerRef.putFile(filepath).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(UploadTask.TaskSnapshot aVoid) {
+                            progressDialog.setTitle("Uploading Image");
+                            progressDialog.show();
+                            progressDialog.dismiss();
+
+                            //and displaying a success toast
+                            Toast.makeText(getApplicationContext(), "File Uploaded ", Toast.LENGTH_LONG).show();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Toast.makeText(EventActivity.this, "Upload failed", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+            System.out.println("--------------" + filepath.getPath() + "--------------");
+
         }
     }
 }
